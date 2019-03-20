@@ -1,31 +1,35 @@
 /* Utility */
 
-
-
-
 body {
   padding-top: 75px;
   padding-bottom: 75px;
+  padding-right: 10px;
+  margin-bottom: 10px;
 }
 
 h1 {
   margin-top: 10px;
-  margin-bottom: 30px
+  margin-bottom: 30px;
 }
 nav a {
   color: white;
 }
 
-nav img{
-  float: right;
-
-}
-
 label {
   font-weight: 700;
+  margin-top: 20px;
 }
 
-.form-group{
+.form-group {
   margin-top: 10px;
-  margin-bottom 10px;
+  margin-bottom: 10px;
+}
+
+form {
+  padding-bottom: 20px;
+  margin-right: 30px;
+}
+
+.btn {
+  margin-top: 20px;
 }
