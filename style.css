@@ -9,19 +9,21 @@ body {
   margin-right: 40px;
 }
 
-a {
+a,
+a:hover {
   margin-right: 30px;
+  text-decoration: none;
 }
 h1 {
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 nav.navbar-dark a {
   color: white;
 }
 
-nav.navbar-light a {
-  color: black;
+.navbar-light a {
+  color: mediumblue;
 }
 
 label {
@@ -39,6 +41,8 @@ label {
 .form-group {
   margin-left: 10px;
   padding-left: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 1opx;
 }
 
 .list-group-item {
