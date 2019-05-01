@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous"></link>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
-    <link rel="stylesheet" href="../style.css"/></link>
-    <title>Widget Image</title>
-</head>
-<body>
-        <nav class="navbar navbar-light bg-light fixed top">
-        <a href="widget-list.html"><i class="fas fa-chevron-left"></i></a>
+import React, { Component } from 'react'
+import {Link} from "react-router-dom";
+
+export default class WidgetImage extends Component {
+  render() {
+    return (
+      <div>
+         <nav class="navbar navbar-light bg-light fixed top">
+        <Link ="/WidgetList"><i class="fas fa-chevron-left"></i></a>
         <span class="navbar-brand mb-01 h1>">Widget Edit</span>
-        <a class="float-right pt-2" href="widget-list.html"><i class="fas fa-check pt-1"></i></a>
+        <a class="float-right pt-2" to="/WidgetList"><i class="fas fa-check pt-1"></i></a>
         </nav>
         
         <div class="container">
@@ -46,17 +38,24 @@
                 <input placeholder="Choose File" value="No file chosen" id="text" name="Text" type="file" class="form-control">
                 </div>
 
-                        <a class="btn btn-primary btn-block" href=#>Upload Image</a>
-                        <a class="btn btn-danger btn-block" href="widget-list.html">Delete</a>
+                        <a class="btn btn-primary btn-block" to=#>Upload Image</a>
+                        <a class="btn btn-danger btn-block" to="/WidgetList">Delete</a>
                                                    
                         <nav class="navbar navbar-light bg-light fixed-bottom">
                         <div class="full-width">
-                        <a class= "float-right" href="../user/profile.html"><i class="fas fa-user text-primary"></i></a>
+                        <a class= "float-right" to="./user/Profile"><i class="fas fa-user text-primary"></i></a>
                         </nav>
                         </div>      
                         
                 </form>
                 </div>
 
-</body>
-</html>
+
+
+
+
+
+      </div>
+    )
+  }
+}

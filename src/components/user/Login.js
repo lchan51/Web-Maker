@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
 export default class Login extends Component {
+
+
+
 render() {
     return(
         <div>
@@ -10,12 +13,12 @@ render() {
         </div>
         <form>
           <div className="form-group">
-          <label HTMLfor="username">Username</label>
+          <label htmlFor="username">Username</label>
           <input placeholder="Enter your username here" className="form-control" type="text" id="username" name="usename"/>
             </div> 
                   
             <div className="form-group">   
-            <label HTMLfor="password">Password</label>
+            <label htmlFor="password">Password</label>
            <input placeholder="Enter your password here" type="password" className="form-control" id="password" name="password"/>
           </div>
           </form>
