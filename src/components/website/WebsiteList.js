@@ -7,9 +7,9 @@ export default class WebsiteList extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-primary fixed-top">
-          <Link to="../user/123"><i className="fas fa-chevron-left"/></Link>
+          <Link to="./user/123"><i className="fas fa-chevron-left"/></Link>
           <span className="navbar-brand mb-0 h1"> Websites </span>
-          <Link className="float-right" to="/user/123/website/new"><i className="fas fa-plus" /></Link>
+          <Link className="float-right" to="/user/123/WebsiteNew"><i className="fas fa-plus" /></Link>
         </nav>
 
         <section className="container-left">

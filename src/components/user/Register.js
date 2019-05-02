@@ -1,51 +1,102 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
 
-export default class Profile extends Component {
+export default class Register extends Component {
+  state = {
+    username: "",
+    password: "",
+    password2: "",
+  }
+  
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  
+  onSubmit = e => {
+    e.preventDefault();
+    const{username, password, password2} = this.state;
+    this.register (username, password, password2)
+  }
+
+  register(username, password, password2){
+    if(password !==password2) {
+      alert("The passwords do not match");
+      return;
+    }
+
+    for (let user of this.props.users){
+      if (user.username ===username){
+        alert("Username is taken, please try another one ")
+        return;
+      }
+    }
+    const newUser = {
+      _id: this.props.users[this.props.users.length -1]._id +1,
+      username,
+      password
+    };
+    this.props.addUser(newUser);
+    this.props.history.push(`/user/${newUser._id}`);
+  }
+
   render() {
+
+    const {username, password, password2} = this.state
+
     return (
       <div className="container">
         <h1>Register</h1>
 
-        <form>
-          <div className="form-group">
-          <label htmlFor="username">Username</label>
+        <form onSubmit = {this.onSubmit}>
+        
+        <div className="form-group">
+        <label htmlFor="username">Username</label>
             <input
               placeholder="username"
+              type="text"
               className="form-control"
-              type="username"
               id="username"
-              name="usename"
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              
             />
           </div>
 
           <div className="form-group">
+          <label htmlFor="password">Password</label>
             <input
               placeholder="password"
-              type="password"
+              type="text"
               className="form-control"
               id="password"
               name="password"
+              value={password}
+              onChange={this.onChange}
             />
           </div>
 
           <div className="form-group">
+          <label htmlFor="password2">Verify Password</label>
             <input
               placeholder="verify password"
-              type="password"
+              type="text"
               className="form-control"
-              id="verifypassword"
-              name="verifypassword"
+              id="password2"
+              name="password2"
+              value={password2}
+              onChange={this.onChange}
             />
           </div>
         </form>
 
-        <Link className="btn btn-primary btn-block" to="/user/123">
-          Register
-        </Link>
-        <Link className="btn btn-danger btn-block" to="/login">
+        <button className="btn btn-primary btn-block">
+          Register </button>
+        <button className="btn btn-danger btn-block">
           Cancel
-        </Link>
+        </button>
       </div>
     );
   }

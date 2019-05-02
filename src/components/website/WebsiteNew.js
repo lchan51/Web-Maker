@@ -9,9 +9,9 @@ export default class WebsiteNew extends Component {
       
       <nav class="navbar navbar-dark bg-primary fixed-top row"> 
       <div class="col-lg-4 d-none d-lg-block">
-      <Link to="website-list.html"> <i class="fas fa-chevron-left"></i></Link>
+      <Link to="/WebsiteList"> <i class="fas fa-chevron-left"></i></Link>
       <span class="navbar-brand mb-0 h1">Websites</span>
-      <Link class="float-right pt-2" href="website-new.html"><i class="fas fa-plus pt-1"></i></Link>
+      <Link class="float-right pt-2" to="/WebsiteNew"><i class="fas fa-plus pt-1"></i></Link>
         </div>      
         
         <div class="col-lg-8">
@@ -21,32 +21,33 @@ export default class WebsiteNew extends Component {
         </div>
         </nav>
 
-    <section class="row">
-        <div class="col-lg-4 d-none d-lg-block">
+          <section class="row">
+            <div class="col-lg-4 d-none d-lg-block">
                 <ul class="list-group">
 
-                        <li class="list-group-item">
-                        <Link to="./page/PageList">Blogging App</Link>
-                        <Link class="float-right" href="website-edit.html"><i class="fas fa-cog"></i></Link>
-                        </li>
+                  <li class="list-group-item">
+                  <Link to="./page/PageList">Blogging App</Link>
+                  <Link class="float-right" href="website-edit.html"><i class="fas fa-cog"></i></Link>
+                  </li>
 
-                        <li class="list-group-item">
-                            <Link to="./page/PageList">Address Book App</Link>
-                            <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
-                            </li>
+                  <li class="list-group-item">
+                  <Link to="./page/PageList">Address Book App</Link>
+                  <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
+                    </li>
                 
-                            <li class="list-group-item">
-                                <Link to="./page/PageList">Script Testing App</Link>
-                                <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
-                                </li>
+                  <li class="list-group-item">
+                  <Link to="./page/PageList">Script Testing App</Link>
+                  <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
+                  </li>
 
-                                <li class="list-group-item">
-                                    <Link to="./page/PageList">Blogger</Link>
-                                    <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
-                                    </li>
-                                </ul>
-                                </div>
+                  <li class="list-group-item">
+                  <Link to="./page/PageList">Blogger</Link>
+                  <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
+                  </li>
 
+                  </ul>
+                  </div>
+                  </section>
         <div class="col-lg-8">
         
         <form>
@@ -60,11 +61,10 @@ export default class WebsiteNew extends Component {
             <textarea class="form-control" rows="4" id="description" name="description" placeholder="Description"></textarea>
             </div>
        </form>
-
-       </div>
        
-    </section>
-    <
+       </div>
+      
+    
     <nav class="navbar navbar-dark bg-primary fixed-bottom">
         <div class="full-width">
             <Link class= "float-right" href="./user/Profile"><i class="fas fa-user"></i></Link>

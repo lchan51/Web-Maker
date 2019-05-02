@@ -8,13 +8,52 @@ import WebsiteList from "./components/website/WebsiteList";
 import PageEdit from "./components/page/PageEdit";
 import WebsiteNew from "./components/website/WebsiteNew.js";
 import WebsiteEdit from "./components/website/WebsiteEdit.js";
-import PageNew from "./components/page/PageNeweNew";
+import PageNew from "./components/page/PageNew";
 import PageList from "./components/page/PageList";
 import WidgetList from "./components/widget/WidgetList";
 import WidgetChooser from "./components/widget/WidgetChooser";
 
 
 class App extends Component {
+
+  addUser = (user) => {
+    const newUsers = this.state.users;
+    newUsers.push(user);
+    this.setState({
+    users: newUsers
+    });
+}
+
+userNameInUse = (username) => {
+    for(let user of this.state.users) {
+    if(username === user.username) {
+    return true;
+        }
+    }
+
+    return false;
+}
+
+updateUser = (newUser) => {
+    const newUsers = this.state.users.map((user)=>{
+        if(user._id === newUser._id) {
+        if(user.username !== newUser.userName && 
+        this.userNameInUse(newUser.username)) {
+        alert("This username is taken");
+        } else {
+        user = newUser;
+        alert("user information is updated");
+            }
+        }
+        return user;
+    });
+
+    this.setState({
+        users: newUsers
+    })
+  
+}
+
 
 state = {
 
@@ -54,18 +93,23 @@ widgets: [
   render() {
     return (
     <Router>
-      <Route exact path="/" component={Login} />
-      <Route exact path="/login"component={Login} />
-      <Route exact path="/register" component={Register}/>
-      <Route exact path="/user/:uid" component={Profile}/>
-      <Route exact path="/user/:uid/website" component={WebsiteList}/>
-      <Route exact path="/user/:uid/website/new" componenet={WebsiteNew}/>
-      <Route exact path="/user/:uid/website/:wid" component={WebsiteEdit}/>
-      <Route exact path= "/user/:uid/website/:wid/page" component={PageList}/>
-      <Route exact path="/user/:uid/website/:wid/page/new" component={PageNew}/>
-			<Route exact path="/user/:uid/website/:wid/page/:pid" component={PageEdit}/>
-      <Route exact path="/user/:uid/website/:wid/page/:pid/widget" component={WidgetList}/>
-      <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new" component={WidgetChooser}/>
+      <Route exact path="/" render = {props=> (<Login {...props} users={this.state.users}/>)}/>
+      <Route exact path="/login" render = {props=> (<Login {...props} users={this.state.users}/>)}/>
+      <Route exact path="/register" render = {props=> (<Register {...props} users={this.state.users} addUser={this.addUser}/>)}/>
+      <Route exact path="/user/:uid" render = {props=> (<Profile {...props} users={this.state.users} updateUser={this.updateUser}/>)}/>
+      <Route exact path="/user/:uid/website" render = {props=> (<WebsiteList {...props} users={this.state.users}/>)}/>
+      
+      <Route exact path="/user/:uid/website/new" render = {props=> (<WebsiteNew {...props} users={this.state.users}/>)}/>
+      <Route exact path="/user/:uid/website/:wid"  render = {props=> (<WebsiteEdit {...props} users={this.state.users}/>)}/>
+      <Route exact path="/user/:uid/website/:wid/page" render = {props=> (<PageList {...props} users={this.state.users}/>)}/>
+      <Route exact path="/user/:uid/website/:wid/page/new" render = {props=> (<PageNew {...props} users={this.state.users}/>)}/>
+      <Route exact path="/user/:uid/website/:wid/page/:pid"render = {props=> (<PageEdit {...props} users={this.state.users}/>)}/>
+      <Route exact path="/user/:uid/website/:wid/page/:pid/widget" render = {props=> (<WidgetList {...props} users={this.state.users}/>)}/>
+      <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new"render = {props=> (<WidgetChooser {...props} users={this.state.users}/>)}/>
+      {/*<Route exact path="/user/:uid/website/:wid/page/:pid/widget/wgid"render = {props=> (<WidgetEdit {...props} users={this.state.users}/>)}/>*/}
+
+
+    
 
       </Router>
   

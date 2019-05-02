@@ -15,7 +15,7 @@ export default class WidgetChooser extends Component {
         <ul class="list-group">
 
         <li class="list-group-item">
-        <Link to="WidgetHeading">Header</Link>
+        <Link to="/WidgetHeading">Header</Link>
         </li>
         
         <li class="list-group-item">

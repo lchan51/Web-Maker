@@ -22,45 +22,49 @@ export default class WebsiteEdit extends Component {
         </nav>
         
 
-    <section class="row">
-        <div class="col-lg-4 d-none d-lg-block alignment-left">
-                <ul class="list-group">
+        <section class="row">
 
-                        <li class="list-group-item">
-                        <Link to="./page/PageList">Blogging App</Link>
-                        <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
-                        </li>
+        <div class="col-lg-4 d-none d-lg-block alignment-left">
+        <ul class="list-group">
+
+      <li class="list-group-item">
+      <Link to="./page/PageList">Blogging App</Link>
+      <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
+      </li>
                         
-                        <li class="list-group-item">
-                        <Link to="./page/PageList">Address Book App</Link>
-                        <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
-                        </li>
+       <li class="list-group-item">
+       <Link to="./page/PageList">Address Book App</Link>
+       <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
+       </li>
                 
-                        <li class="list-group-item">
-                       <Link to="./page/PageList">Script Testing App <i class="fas fa-cog"></i></Link>
-                       <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
-                        </li>
+        <li class="list-group-item">
+        <Link to="./page/PageList">Script Testing App <i class="fas fa-cog"></i></Link>
+        <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
+        </li>
                                 
-                        <li class="list-group-item">
-                        <Link to="./page/PageList" class="float-right"> Blogger <i class="fas fa-cog"></i></Link>
-                        <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
-                        </li>
-                </ul>
-                    </div>
+          <li class="list-group-item">
+          <Link to="./page/PageList" class="float-right"> Blogger <i class="fas fa-cog"></i></Link>
+          <Link class="float-right" to="/WebsiteEdit"><i class="fas fa-cog"></i></Link>
+          </li>
+          </ul>
+          </div>
 
         <div class="col-lg-8">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Website Name</label>
-                        <input class="form-control" value="Blogger"/>
-                        </div>
+                    <form>
 
-                        <div class="form-group">
-                        <label for="description">Website Description</label>
-                        <textarea class="form-control" rows="4" id="description" name="description" placeholder="Description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis iste atque, corporis velit veritatis eius amet distinctio aliquid beatae omnis dolor placeat ipsum aut vitae ullam sint neque ipsam sequi?</textarea>
-                        </div>
-      </div>
-            </form>
+                    <div class="form-group">
+                    <label for="name">Website Name</label>
+                    <input class="form-control" value="Blogger"/>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="description">Website Description</label>
+                    <textarea class="form-control" rows="4" id="description" name="description" placeholder="Description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis iste atque, corporis velit veritatis eius amet distinctio aliquid beatae omnis dolor placeat ipsum aut vitae ullam sint neque ipsam sequi?</textarea>
+                    </div>
+                    
+                    </form>
+            </div>
+            
             </section>
 
                 <Link class="btn btn-danger btn-block" to="website-list.html">Delete</Link>

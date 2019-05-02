@@ -46,9 +46,9 @@ export default class WidgetList extends Component {
         <h4>Unbelievable once-in-a-lifetime experience playing with the giant pandas, only in China</h4>
 
         <div class="float-right">
-        <Link to="widgetYouTube"><i class="fas fa-cog"></i></Link>
+        <Link to="/widgetYouTube"><i class="fas fa-cog"></i></Link>
         <Link to="#"><i class="fas fa-bars"></i></Link></div>
-        <div><iframe src="https://www.youtube.com/embed/jyG9ZhkAQyc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <div><iframe name="video" src="https://www.youtube.com/embed/jyG9ZhkAQyc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
       
 
         <div class="float-right">
@@ -61,8 +61,11 @@ export default class WidgetList extends Component {
         <i class="fas fa-play text-primary"></i>
         <i class="fas fa-eye text-primary"></i>
         <Link class= "float-right" to="./user/Profile"><i class="fas fa-user text-primary"></i></Link>
-        </nav>
         </div>
+        </nav>
+
+
+        
         
 <footer>
 <p>Note: The image, paragraphs, and YouTube video shown above are only for illustration purposes. You can use your image, paragraphs, and YouTube video
@@ -70,11 +73,6 @@ export default class WidgetList extends Component {
 </footer>     
 </div>
 </div>
-
-
-
-
-      </div>
     )
   }
 }

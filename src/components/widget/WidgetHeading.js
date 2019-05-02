@@ -6,9 +6,9 @@ export default class WidgetHeading extends Component {
     return (
       <div>
          <nav class="navbar navbar-light bg-light fixed-top">
-                <a href="widget-list.html"><i class="fas fa-chevron-left"></i></a>
+                <Link to = "/WidgetList"><i class="fas fa-chevron-left"></i></Link>
                 <span class="navbar-brand mb-01 h1>">Widget Edit</span>
-                <a class="float-right pt-2" href="widget-list.html"><i class="fas fa-check pt-1"></i></a>
+                <Link class="float-right pt-2" to="/WidgetList"><i class="fas fa-check pt-1"></i></Link>
                 </nav>
             
                 <div class="container">
@@ -28,12 +28,12 @@ export default class WidgetHeading extends Component {
                                 <input id="size" name="size" type="number" class="form-control" placeholder="3">
                                 </div> 
 
-                                <a class="btn btn-danger btn-block" href="widget-list.html">Delete</a>
+                                <Link class="btn btn-danger btn-block" to="/WidgetList">Delete</Link>
 
                                 <nav class="navbar navbar-light bg-light fixed-bottom">
                                 <div class="full-width">
-                                <a class= "float-right" href="../user/profile.html"><i class="fas fa-user text-primary"></i></a>
-                                 </nav>S
+                                <Link class= "float-right" to="../user/Profile"><i class="fas fa-user text-primary"></i></Link>
+                                 </nav>
 
 
 
