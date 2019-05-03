@@ -12,6 +12,12 @@ h1 {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+nav a,
+nav button i {
+  color: White;
+}
+
 nav.navbar-dark a {
   color: white;
 }
