@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import uuid from "uuid";
 
 export default class WebsiteNew extends Component {
+  
   state = {
     uid: this.props.match.params.uid,
     websites: [],
@@ -10,6 +11,24 @@ export default class WebsiteNew extends Component {
     description: ""
   };
 
+  componentDidMount() {
+    this.filterWebsites(this.props.websites);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot){
+    if (prevProps.websites !== this.props.websites){
+      this.onSubmitfilterWebSites = (this.props.websites);    
+      }
+    }
+  }
+  filterWebsites = (websites) => {
+    const newWebsites = websites.filter(
+      website => (website.developerId === this.state.uid)
+      )
+    this.setState({
+      websites: newWebsites
+    })
+  }
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -27,92 +46,103 @@ export default class WebsiteNew extends Component {
     };
 
     this.props.addWeb(newWeb);
-    this.props.history.push(`/user/${this.state.uid}/website`);
+    this.props.history.pushState(`/user/${this.state.uid}/website`);
+
   };
 
   render() {
+    const {uid} = this.state;
+
     return (
       <div>
-        <nav class="navbar navbar-dark bg-primary fixed-top row">
-          <div class="col-lg-4 d-none d-lg-block">
-            <Link to="/WebsiteList">
+        <nav className="navbar navbar-dark bg-primary fixed-top row">
+          <div className="col-lg-4 d-none d-lg-block">
+           
+            <Link to={`/user/${uid}/website`}>
               {" "}
-              <i class="fas fa-chevron-left" />
+              <i className="fas fa-chevron-left" />
             </Link>
-            <span class="navbar-brand mb-0 h1">Websites</span>
-            <Link class="float-right pt-2" to="/WebsiteNew">
-              <i class="fas fa-plus pt-1" />
+            <span className="navbar-brand mb-0 h1">Websites</span>
+            <Link className="float-right pt-2" to={`/user/${uid}/website`}>
+              <i className="fas fa-plus pt-1" />
             </Link>
           </div>
 
-          <div class="col-lg-8">
-            <Link to="/WebsiteList" class="d-lg-none">
-              <i class="fas fa-chevron-left" />
+          <div className="col-lg-8">
+            <Link classNameName="d-lg-none" to="/user/:uid/website">
+            <i className="fas fa-chevron-left" />
             </Link>
-            <Link class="float-right pt-2" to="/WebsiteList">
-              <i class="fas fa-check pt-1" />
-            </Link>
-            <span class="navbar-brand mb-0 h1">New Website</span>
+            <button
+              form="newWebForm" className="btn"
+              <i className="fas fa-check pt-1"/>
+              </button>
+
+            <span className="navbar-brand mb-0 h1">New Website</span>
           </div>
+              <i classNameName="fas fa-cog"></i></Link>
+              </li>
+                )
+                )
+                }
+          </ul>
+
         </nav>
 
-        <section class="row">
-          <div class="col-lg-4 d-none d-lg-block">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <Link to="./page/PageList">Blogging App</Link>
-                <Link class="float-right" to="/WebsiteEdit">
-                  <i class="fas fa-cog" />
-                </Link>
-              </li>
-
-              <li class="list-group-item">
-                <Link to="./page/PageList">Address Book App</Link>
-                <Link class="float-right" to="/WebsiteEdit">
-                  <i class="fas fa-cog" />
-                </Link>
-              </li>
-
-              <li class="list-group-item">
-                <Link to="./page/PageList">Script Testing App</Link>
-                <Link class="float-right" to="/WebsiteEdit">
-                  <i class="fas fa-cog" />
-                </Link>
-              </li>
-
-              <li class="list-group-item">
-                <Link to="./page/PageList">Blogger</Link>
-                <Link class="float-right" to="/WebsiteEdit">
-                  <i class="fas fa-cog" />
-                </Link>
-              </li>
+        <section className="row">
+          <div className="col-lg-4 d-none d-lg-block">
+            <ul className="list-group">
+              {this.state.websites.map
+              (website) => (
+              <li key={website._id} classNameName "list-group-item">
+              <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
+              <Link to={`/user/${uid}/website/${website._id}`}classNameName="float-right">
+              <i classNameName="fas fa-cog"></i></Link>
+                )
+                )
+                }
             </ul>
           </div>
         </section>
-        <div class="col-lg-8">
-          <form>
-            <div class="form-group">
+        <div className="col-lg-8">
+          <form id="newWebForm" onSubmit={this.onSubmit}>
+            <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input class="form-control" placeholder="Name" />
-            </div>
+              <input className="form-control" placeholder="Name"
+              name="name"
+              onChange={this.onChange}
+              value={this.state.name}/>
+              </div>
 
-            <div class="form-group">
+            <div className="form-group">
               <label htmlFor="description">Description</label>
               <textarea
-                class="form-control"
+                className="form-control"
                 rows="4"
                 id="description"
                 name="description"
                 placeholder="Description"
-              />
+                name="description"
+                onChange={this.onChange}
+                value={this.state.description}/>
             </div>
+
+            <Link
+                to={`/user/${uid}/website`}
+                classNameName="btn btn-lg btn-warning">
+                Cancel
+                </Link>
+                <button
+                classNameName="btn btn-lg btn-success float-right"
+                                >
+                Submit
+                </button>
           </form>
         </div>
 
-        <nav class="navbar navbar-dark bg-primary fixed-bottom">
-          <div class="full-width">
-            <Link class="float-right" href="./user/Profile">
-              <i class="fas fa-user" />
+        <nav className="navbar navbar-dark bg-primary fixed-bottom">
+          <div className="full-width">
+            <Link className="float-right" to={`/user/${uid`}>
+              <i className="fas fa-user" />
             </Link>
           </div>
         </nav>

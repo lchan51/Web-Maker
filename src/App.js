@@ -157,6 +157,36 @@ class App extends Component {
     this.setState({
       users: newUsers
     });
+
+    addWeb=(newWeb) => {
+      const newWebs = this.state.websites;
+      newWebs.push(newWeb)
+      this.setState({
+        websites: newWebs
+      }); 
+    }
+      deleteWeb =(wid)=> {
+        this.setState({
+          websites: this.state.websites.filter(
+            (website)=> website._id !==wid
+            )
+        })
+      }
+
+        editWeb = (wid, name, description)=>{
+          this.setState({
+            websites.this.state.websites.map
+            (website)+> {
+              if(wid ===website._id){
+                website.name = name;
+                website.description = description
+              }
+              return website;
+            }
+          })
+        }
+
+  
   };
 
   render() {

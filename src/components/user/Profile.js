@@ -62,11 +62,14 @@ export default class Profile extends Component {
             form="profileForm"
             href="profileForm"
             className="btn"
-            to="/Profile"
-          >
-            <i className="fas fa-check" />
-          </button>
+            to="/:uid"
+           
+        <nav className="navbar navbar-dark bg-primary fixed-bottom"
+        <i className="fas fa-check" /></i>
         </nav>
+         </button>
+         </nav>
+
 
         <form id="profileForm" onSubmit={this.onSubmit}>
           <div className="form-group">
@@ -121,15 +124,19 @@ export default class Profile extends Component {
           </div>
         </form>
 
-        <Link className="btn btn-primary btn-block" to="user/123/website">
-          Website
+        <Link 
+        className="btn btn-primary btn-block" 
+        to={`/user/${this.props.match.params.uid`}
+        />
+        Websites
         </Link>
-        <Link className="btn btn-danger btn-block" to="./login">
+
+        <Link className="btn btn-danger btn-block" to="/login"/>
           Logout
         </Link>
 
         <nav className="navbar navbar-dark bg-primary fixed-bottom" />
-        <Link to="./user/Profile">
+        <Link to="./user/:uid">
           {" "}
           <i className="fas fa-user-primary" />
         </Link>
