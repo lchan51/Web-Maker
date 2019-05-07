@@ -55,22 +55,14 @@ export default class Profile extends Component {
     const { username, email, firstName, lastName } = this.state;
 
     return (
-      <div className="container">
+        <div>
         <nav className="navbar navbar-dark bg-primary fixed-top">
-          <span className="navbar-brand mb-0 h1">Profile</span>
-          <button
-            form="profileForm"
-            href="profileForm"
-            className="btn"
-            to="/:uid"
-           
-        <nav className="navbar navbar-dark bg-primary fixed-bottom"
-        <i className="fas fa-check" /></i>
+        <span className="navbar-brand mb-0 h1">Profile</span>
+        <button className="btn" form="profileForm" href="profile.html">
+        <i className="fas fa-check"/></button>
         </nav>
-         </button>
-         </nav>
 
-
+        <div className="container">
         <form id="profileForm" onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -122,25 +114,27 @@ export default class Profile extends Component {
               onChange={this.onChange}
             />
           </div>
+          
         </form>
+        </div>
+        
 
-        <Link 
-        className="btn btn-primary btn-block" 
-        to={`/user/${this.props.match.params.uid`}
-        />
+        <Link className="btn btn-primary btn-block"
+        to={`/user/${this.props.match.params.uid}/website`}>
         Websites
         </Link>
 
-        <Link className="btn btn-danger btn-block" to="/login"/>
-          Logout
+        
+
+        <Link className="btn btn-danger btn-block" 
+        to="/login/">
+        Logout 
         </Link>
 
-        <nav className="navbar navbar-dark bg-primary fixed-bottom" />
-        <Link to="./user/:uid">
-          {" "}
+          <nav className="navbar navbar-dark bg-primary fixed-bottom" to="./user/:uid">
           <i className="fas fa-user-primary" />
-        </Link>
-      </div>
+          </nav>
+          </div>
     );
   }
 }

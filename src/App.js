@@ -5,9 +5,9 @@ import Login from "./components/user/Login";
 import Profile from "./components/user/Profile";
 import Register from "./components/user/Register";
 import WebsiteList from "./components/website/WebsiteList";
-import PageEdit from "./components/page/PageEdit";
 import WebsiteNew from "./components/website/WebsiteNew.js";
 import WebsiteEdit from "./components/website/WebsiteEdit.js";
+import PageEdit from "./components/page/PageEdit";
 import PageNew from "./components/page/PageNew";
 import PageList from "./components/page/PageList";
 import WidgetList from "./components/widget/WidgetList";
@@ -119,7 +119,7 @@ class App extends Component {
         url: "https://youtu.be/AM2Ivdi9c4E"
       }
     ]
-  };
+  }
 
   addUser = user => {
     const newUsers = this.state.users;
@@ -127,7 +127,7 @@ class App extends Component {
     this.setState({
       users: newUsers
     });
-  };
+  }
 
   userNameInUse = username => {
     for (let user of this.state.users) {
@@ -136,13 +136,12 @@ class App extends Component {
       }
     }
     return false;
-  };
+  }
 
   updateUser = newUser => {
-    const newUsers = this.state.users.map(user => {
+    const newUsers = this.state.users.map((user) => {
       if (user._id === newUser._id) {
-        if (
-          user.username !== newUser.userName &&
+        if (user.username !== newUser.userName &&
           this.userNameInUse(newUser.username)
         ) {
           alert("This username is taken");
@@ -156,136 +155,116 @@ class App extends Component {
 
     this.setState({
       users: newUsers
-    });
-
-    addWeb=(newWeb) => {
+    })
+  }
+    addWeb = newWeb => {
       const newWebs = this.state.websites;
-      newWebs.push(newWeb)
+      newWebs.push(newWeb);
       this.setState({
         websites: newWebs
-      }); 
+      });
     }
-      deleteWeb =(wid)=> {
-        this.setState({
-          websites: this.state.websites.filter(
-            (website)=> website._id !==wid
+
+    deleteWeb = (wid) => {
+      this.setState({
+        websites: this.state.websites.filter((website) => website._id !== wid)
+    })
+  }
+
+    editWeb = (wid, name, description) => {
+      this.setState({
+        websites: this.state.websites.map ((website) => {
+          if (wid === website._id) {
+            website.name = name;
+            website.description = description
+          }
+          return website;
+      })
+    })
+  }
+
+    addPage = newPage => {
+      const newPages = this.state.pages;
+      newPages.push(newPage);
+      this.setState({
+        pages: newPages
+      });
+    }
+
+    editPage = newPage => {
+      const newPages = this.state.pages.map(
+        (page) => {
+          if(page._id ===newPage._id){
+            page=newPage
+          }
+            return page;
+          }
             )
+       this.setState({
+          pages: newPages
         })
       }
+      
 
-        editWeb = (wid, name, description)=>{
-          this.setState({
-            websites.this.state.websites.map
-            (website)+> {
-              if(wid ===website._id){
-                website.name = name;
-                website.description = description
-              }
-              return website;
-            }
-          })
+      deletePage = pid => {
+        const newPages = this.state.pages.filter(
+          (page) => (
+            page._id !== pid
+          )
+        )
+            this.setState({
+              pages: newPages
+            })
         }
 
-  
-  };
-
   render() {
+    
     return (
       <Router>
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={props => <Login {...props} users={this.state.users} />}
+    <Route exact path="/" render={props => (<Login {...props} users={this.state.users} />)}
+          />
+          <Route exact path="/login" render={props => (<Login {...props} users={this.state.users} />)}
+          />
+          <Route exact path="/register" render={props => (<Register {...props} users={this.state.users} addUser={this.addUser}/>)}
           />
           <Route
-            exact
-            path="/login"
-            render={props => <Login {...props} users={this.state.users} />}
+            exact path="/user/:uid" render={props => (<Profile{...props} users={this.state.users} updateUser={this.updateUser}/>)}
+          />
+          <Route exact path="/user/:uid/website" render={props => (<WebsiteList {...props} websites={this.state.websites} />)}
+          />
+          <Route exact path="/user/:uid/website/new" 
+          render={props => (<WebsiteNew {...props} 
+          websites={this.state.websites} 
+          addWeb={this.addWeb}/>)}
+          />
+          <Route exact path="/user/:uid/website/:wid"
+          render={props =>(<WebsiteEdit {...props} 
+          websites={this.state.websites} 
+          deleteWeb={this.deleteWeb} 
+          editWeb={this.editWeb}/>)}
+          />
+          <Route exact path="/user/:uid/website/:wid/page" render={props => (<PageList {...props}pages= {this.state.pages} />)}
           />
           <Route
-            exact
-            path="/register"
-            render={props => (
-              <Register
-                {...props}
-                users={this.state.users}
-                addUser={this.addUser}
-              />
-            )}
+            exact path="/user/:uid/website/:wid/page/new" render={props => (<PageNew {...props} pages={this.state.pages} addPage={this.addPage}/>)}
           />
           <Route
-            exact
-            path="/user/:uid"
-            render={props => (
-              <Profile
-                {...props}
-                users={this.state.users}
-                updateUser={this.updateUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/user/:uid/website"
-            render={props => (
-              <WebsiteList {...props} websites={this.state.websites} />
-            )}
-          />
-          <Route
-            exact
-            path="/user/:uid/website/new"
-            render={props => (
-              <WebsiteNew
-                {...props}
-                websites={this.state.websites}
-                addWeb={this.addWeb}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/user/:uid/website/:wid"
-            render={props => (
-              <WebsiteEdit
-                {...props}
-                websites={this.state.websites}
-                deleteWeb={this.deleteWeb}
-                editWeb={this.editWeb}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/user/:uid/website/:wid/page"
-            render={props => <PageList {...props} users={this.state.users} />}
-          />
-          <Route
-            exact
-            path="/user/:uid/website/:wid/page/new"
-            render={props => <PageNew {...props} users={this.state.users} />}
-          />
-          <Route
-            exact
-            path="/user/:uid/website/:wid/page/:pid"
-            render={props => <PageEdit {...props} users={this.state.users} />}
+            exact path="/user/:uid/website/:wid/page/:pid" render={props => (<PageEdit {...props} pages={this.state.pages} editPage={this.editPage} deletePage={this.deletePage}/>)}
           />
           <Route
             exact
             path="/user/:uid/website/:wid/page/:pid/widget"
-            render={props => <WidgetList {...props} users={this.state.users} />}
+            render={props => (<WidgetList {...props} users={this.state.users} />)}
           />
           <Route
-            exact
-            path="/user/:uid/website/:wid/page/:pid/widget/new"
-            render={props => (
-              <WidgetChooser {...props} users={this.state.users} />
-            )}
+            exact path="/user/:uid/website/:wid/page/:pid/widget/new"
+    render={props => (<WidgetChooser {...props} users={this.state.users} />)}
           />
         </Switch>
       </Router>
     );
   }
-}
+    }
 
 export default App;

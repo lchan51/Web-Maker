@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class WebsiteEdit extends Component {
+  
   state = {
     uid: this.props.match.params.uid,
     wid: this.props.match.params.id,
     websites: [],
     name: "",
     description: ""
-  };
+  }
 
   componentDidMount() {
-  
     this.filterWebsites(this.props.websites);
     this.getWebsite(this.state.wid);
   }
@@ -21,7 +21,7 @@ export default class WebsiteEdit extends Component {
         }
     }
   
-    getWebsite(wid)=> {
+    getWebsite = (wid) => {
     let currentWeb;
     for (let website of this.props.website){
     if(website._id===wid){
@@ -30,26 +30,28 @@ export default class WebsiteEdit extends Component {
     }
   }
       this.setState({
-        name: currentWeb.name
+        name: currentWeb.name,
         description: currentWeb.description
-      })
+      });
+    }
+
 
   filterWebsites = (websites) => {
     const newWebsites = websites.filter(
       website => (website.developerId === this.state.uid)
       )
     this.setState({
-      websites: newWebsites
-    })
+      websites: newWebsites})
   }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  };
-        delete ()=>{
-        this.props.deleteWeb(this.props.match.params.wid)
-        this.props.history.push(`/user/${this.state.uid}/website`)
+  }
+        deleteWeb = () => {
+          this.props.deleteWeb(this.props.match.params.wid);
+          this.props.history.push(`/user/${this.state.uid}/website`)
         }
 
         onSubmit = e => {
@@ -58,62 +60,68 @@ export default class WebsiteEdit extends Component {
           this.props.history.push(`/user/${this.state.uid}/website`);
         }
 
-
   render() {
     const { uid } = this.state;
 
     return (
       <div>
+
         <nav className="navbar navbar-dark bg-primary fixed-top row">
           <div className="col-lg-4 d-none d-lg-block">
             <Link to={`/user/${uid}/website`}>
               <i className="fas fa-chevron-left" />
             </Link>
-            <span className="navbar-brand mb-0 h1">Websites</span>
             <Link className="float-right pt-1" to={`/user/${uid}/website/new`}>
+            <span className="navbar-brand mb-0 h1">Websites</span>
               <i className="fas fa-plus pt-2" />
             </Link>
           </div>
 
           <div className="col-lg-8">
-            <Link to={`/user/${uid}/website` className="d-lg-none">
-              <i className="fas fa-chevron-left" />
+            <Link to={`/user/${uid}/website`} className="d-lg-none">
+            <i className="fas fa-chevron-left" />
             </Link>
-            <form id="editWebForm">
-            <button className="float-right pt-2"
-            <i className="fas fa-check pt-1"/></i>
-            </button>
+
             <span className="navbar-brand mb-0 h1">Edit Website</span>
-            </form>
+            <button 
+            className="btn float-right pt-2" form id ="editWebForm">
+            <i className="fas fa-check pt-1"/>
+            </button>
             </div>
-        </nav>
+            </nav>
 
-        <section className="row">
-          <div className="col-lg-4 d-none d-lg-block alignment-left">
+          <div className= "row">
+          <div className = "col-lg-4 d-none d-lg-block alignment-left">
             <ul className="list-group">
-
-            {this.state.websites.map
+            {
+              this.state.websites.map(
               (website) => (
-              <li key={website._id} className "list-group-item">
+              <li key={website._id} className = "list-group-item">
               <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
               <Link to={`/user/${uid}/website/${website._id}`}className="float-right">
               <i className="fas fa-cog"></i></Link>
               </li>
-                )
-                )
+              )
+            )
                 }
+
             </ul>
           </div>
+          </div>       
 
           <div className="col-lg-8">
-            <form>
-              <div className="form-group">
               <form id="editWebForm" onSubmit={this.onSubmit}>
+              <div className="form-group">
                 <label htmlFor="name">Website Name</label>
-                <input className="form-control" name="name" value={this.state.name}
+                <input id="name"
+                name="name" 
+                className="form-control"
+                type="text"
+                placeholder="Name of the Website"
+                value={this.state.name}
                 onChange={this.onChange}/>
-                </form>
               </div>
+              
 
               <div className="form-group">
                 <label htmlFor="description">Website Description</label>
@@ -122,38 +130,40 @@ export default class WebsiteEdit extends Component {
                   rows="4"
                   id="description"
                   name="description"
+                  type="text"
                   placeholder="Description"
                   value={this.state.description}
-                  onChange={this.onChange}
-                >
+                  onChange={this.onChange}>
                 </textarea>
-              </div>
-        </section>
+                </div>
 
-          <Link to = {`/user/${uid}/website} 
-          <button className="btn btn-warning btn-block">
-          Cancel
-          </button>
-          </Link>
+                <Link to={`/user/${uid}/website`}
+                className="btn btn-lg btn-warning">
+                Cancel
+                </Link>
+                                
+                <button
+                type="button"
+                onClick={this.deleteWeb}
+                className="btn btn-lg btn-danger float-right">
+                Delete
+                </button>
+                </form>
+                </div>
 
-        <button 
-        type="button"
-        onClick={this.delete}
-        className="btn btn-danger float-right">
-          Delete
-        </button>
-        </form>
+                <nav className="navbar navbar-dark bg-primary fixed-bottom">
+                <div className="full-width">
+                
+                <Link className="color-white float-right" to={`/user/${uid}`}>
+                <i className="fas fa-user" />
+                </Link>
+                </div>
+                </nav>
+                </div>
+                
+              
 
 
-        <nav className="navbar navbar-dark bg-primary fixed-bottom">
-          <div className="full-width">
-
-            <Link className="float-right" to={`/user/${uid}`}>
-              <i className="fas fa-user" />
-            </Link>
-          </div>
-        </nav>
-      </div>
-    );
-  }
-}
+                );
+              }
+            }

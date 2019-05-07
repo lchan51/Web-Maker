@@ -20,7 +20,7 @@ export default class WebsiteNew extends Component {
       this.onSubmitfilterWebSites = (this.props.websites);    
       }
     }
-  }
+    
   filterWebsites = (websites) => {
     const newWebsites = websites.filter(
       website => (website.developerId === this.state.uid)
@@ -29,6 +29,7 @@ export default class WebsiteNew extends Component {
       websites: newWebsites
     })
   }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -52,14 +53,11 @@ export default class WebsiteNew extends Component {
 
   render() {
     const {uid} = this.state;
-
     return (
       <div>
         <nav className="navbar navbar-dark bg-primary fixed-top row">
           <div className="col-lg-4 d-none d-lg-block">
-           
             <Link to={`/user/${uid}/website`}>
-              {" "}
               <i className="fas fa-chevron-left" />
             </Link>
             <span className="navbar-brand mb-0 h1">Websites</span>
@@ -69,37 +67,29 @@ export default class WebsiteNew extends Component {
           </div>
 
           <div className="col-lg-8">
-            <Link classNameName="d-lg-none" to="/user/:uid/website">
-            <i className="fas fa-chevron-left" />
+            <Link className="d-lg-none" to="/user/:uid/website">
+              <i className="fas fa-chevron-left" />
             </Link>
-            <button
-              form="newWebForm" className="btn"
+            <button form="newWebForm" className="btn float-right">
               <i className="fas fa-check pt-1"/>
-              </button>
-
+            </button>
             <span className="navbar-brand mb-0 h1">New Website</span>
           </div>
-              <i classNameName="fas fa-cog"></i></Link>
-              </li>
-                )
-                )
-                }
-          </ul>
-
         </nav>
-
         <section className="row">
           <div className="col-lg-4 d-none d-lg-block">
             <ul className="list-group">
-              {this.state.websites.map
-              (website) => (
-              <li key={website._id} classNameName "list-group-item">
-              <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
-              <Link to={`/user/${uid}/website/${website._id}`}classNameName="float-right">
-              <i classNameName="fas fa-cog"></i></Link>
+              {this.state.websites.map(
+                (website) => (
+                  <li key={website._id} className="list-group-item">
+                    <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
+                    <Link to={`/user/${uid}/website/${website._id}`}className="float-right">
+                      <i className="fas fa-cog"></i>
+                    </Link>
+                  </li>
+                  )
                 )
-                )
-                }
+              }
             </ul>
           </div>
         </section>
@@ -128,11 +118,11 @@ export default class WebsiteNew extends Component {
 
             <Link
                 to={`/user/${uid}/website`}
-                classNameName="btn btn-lg btn-warning">
+                className="btn btn-lg btn-warning">
                 Cancel
                 </Link>
                 <button
-                classNameName="btn btn-lg btn-success float-right"
+                className="btn btn-lg btn-success float-right"
                                 >
                 Submit
                 </button>
@@ -141,7 +131,7 @@ export default class WebsiteNew extends Component {
 
         <nav className="navbar navbar-dark bg-primary fixed-bottom">
           <div className="full-width">
-            <Link className="float-right" to={`/user/${uid`}>
+            <Link className="float-right" to={`/user/${uid}`}>
               <i className="fas fa-user" />
             </Link>
           </div>

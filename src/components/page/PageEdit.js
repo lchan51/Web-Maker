@@ -2,45 +2,108 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class PageEdit extends Component {
+  state = {
+    uid: "",
+    wid: "",
+    pid: "",
+    name: "",
+    title: ""
+  }
+  
+  async componentDidMount() {
+      await this.setState({
+      uid: this.props.match.params.uid,
+      wid: this.props.match.params.wid,
+      pid: this.props.match.params.pid
+    })
+  const page = this.getPage();
+  this.setState({
+    name: page.name,
+    title: page.title
+  })
+  }
+  
+  getPage = ()=> {
+    for (let page of this.props.pages) {
+      if(page._id === this.state.pid){
+        return page;
+      }
+    }
+      return null
+  }
+  
+    onChange= e => {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
+  
+    onSubmit = e => {
+      e.preventDefault();
+      const newPage = {
+        _id: this.state.pid,
+        name: this.state.name,
+        websiteId: this.state.wid,
+        title: this.state.title
+      }
+        this.props.editPage (newPage);
+        this.props.history.push(`/user/${this.state.uid}/website/${this.state.wid}/page`)
+    }
+  
+    onDelete =()=> {
+      this.props.deletePage(this.state.pid);
+      this.props.history.push (`/user/${this.state.uid}/website/${this.state.wid}/page`)
+    }
+  
   render() {
+    const {uid,wid,name,title}=this.state
+
     return (
       <div>
-        <div>
-          <nav classNameName="navbar navbar-light bg-light fixed-top">
-            <Link to="/PageList">
-              {" "}
-              <i className="fas fa-chevron-left" />
-            </Link>
-            <span className="navbar-brand mb-0 h1">Edit Page</span>
-            <Link className="float-right pt-2" Link to="/PageList">
-              <i className="fas fa-check pt-1" />
-            </Link>
-          </nav>
-        </div>
+        
+      <div>
+      <nav classNameName="navbar navbar-light bg-light fixed-top">
+      <Link to="/PageList"><i className="fas fa-chevron-left" /></Link>
+      <span className="navbar-brand mb-0 h1">Edit Page</span>
+      <button className=" btn float-right pt-2" form="editPageForm"><i className="fas fa-check pt-1/
+      </button>
+      </form>
+      </nav>
+      </div>
 
         <form>
           <div className="form-group">
-            <label for="name">Name</label>
-            <input className="form-control" value="Blog Post" />
+          <form id="editPageForm" onSubmit={this.onSubmit}> </form>
+            <label htmlFor="name">Name</label>
+            <input className="form-control" type="text id="name" name="name" onChange={this.onChange} value={name} />
           </div>
 
           <div className="form-group">
-            <label for="title">Title</label>
-            <input className="form-control" value="Page Title" />
+            <label htmlFor="title">Title</label>
+            <input className="form-control" type="text" id="title" name="title onChange={this.onChange} value={title}
           </div>
         </form>
 
-        <Link className="btn btn-danger btn-block" to="/PageList">
-          Delete
+        <Link to= {`/user/ ${uid}/website/${wid}/page`}className="btn btn-warning btn-block" to={`/user/${uid}/website/${wid}/page/list`>
+          Cancel
         </Link>
 
-        <nav className="navbar navbar-light bg-light fixed-bottom">
+        <button 
+          type="button"
+          onClick={this.onDelete}
+          className="btn btn-danger btn-block">
+          Delete
+        </button>
+        </form>
+        </div>
+
+        <footer className="navbar navbar-light bg-light fixed-bottom">
           <div className="full-width">
-            <Link className="float-right" to="../user/Profile">
+            <Link className="float-right" to={`user/${uid}`}>
               <i className="fas fa-user" />
             </Link>
           </div>
-        </nav>
+        </footer>
       </div>
     );
   }

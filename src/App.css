@@ -1,6 +1,7 @@
 body {
   padding-top: 75px;
   padding-left: 20px;
+  padding-right: 75px;
 }
 
 a,
@@ -56,6 +57,7 @@ form {
 
 .btn {
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 .full-width {
