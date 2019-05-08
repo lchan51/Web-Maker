@@ -116,7 +116,6 @@ export default class Profile extends Component {
           </div>
           
         </form>
-        </div>
         
 
         <Link className="btn btn-primary btn-block"
@@ -134,6 +133,7 @@ export default class Profile extends Component {
           <nav className="navbar navbar-dark bg-primary fixed-bottom" to="./user/:uid">
           <i className="fas fa-user-primary" />
           </nav>
+          </div>
           </div>
     );
   }

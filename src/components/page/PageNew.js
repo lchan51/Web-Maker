@@ -50,8 +50,8 @@ export default class PageNew extends Component {
               <i className="fas fa-chevron-left" /></Link>
            
             <Link className="float-right pt-2" to={`/user/${uid}/website/${wid}/page/list`}></Link>
-            <form ="newPageForm" class="btn" "i className="fas fa-check pt-1" />X
-            </form>
+            <button form ="newPageForm" className="btn"> <i className="fas fa-check pt-1"/>
+            </button>
             <span className="navbar-brand mb-0 h1">New Page</span>
           </nav>
         </div>
@@ -75,14 +75,16 @@ export default class PageNew extends Component {
           <Link to={`/user/${uid}/website/${wid}/page/list`} className="btn btn-lg btn-warning"> Cancel </Link>
           <Link to={`/user/${uid}/website/${wid}/page/list`} className="btn btn-lg btn-success float-right"> Submit </Link>
           </form>
-      
+        
 
         <footer className="navbar navbar-light bg-light fixed-bottom">
           <div className="full-width">
-            <Link className="float-right" to={`user/{uid}`} <i className="fas fa-user"></i>
+          <Link className="float-right" to={`user/{uid}`}> <i className="fas fa-user"></i>
             </Link>
           </div>
         </footer>
-      </div>
+        </div>
+        </div>
+  )
   }
 }

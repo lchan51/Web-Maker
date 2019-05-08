@@ -1,154 +1,126 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
+import {Link} from "react-router-dom";
 export default class WidgetList extends Component {
-  render() {
-    return (
+    state= {
+        uid: "",
+        wid: "",
+        pid: "",
+        widgets: []
+    }
+
+    async componentDidMount() {
+        await this.setState({
+            uid: this.props.match.params.uid,
+            wid: this.props.match.params.wid,
+            pid: this.props.match.params.pid
+        })
+        this.filterWidgets(this.state.pid);
+    }
+
+    filterWidgets = (pid) => {
+        const widgets = this.props.widgets.filter(
+            (widget) => (
+                widget.pageId === pid
+            )
+        )
+
+        this.setState({
+            widgets
+        })
+    }
+
+render() {
+  const {uid, wid, pid, widgets} = this.state
+  return (
+
       <div>
-        <nav class="navbar fixed-top navbar-light bg-light">
-          <Link to="../page/PageList">
-            {" "}
-            <i class="fa fa-chevron-left" />
-          </Link>
-          <span class="navbar-brand mb-0 h1">Widgets</span>
-          <Link to="/WidgetChooser">
-            <i class="fa fa-plus" />
-          </Link>
-        </nav>
-
-        <div>
-          <div class="container-right">
-            <div class="float-right">
-              <Link to="/widgetHeading">
-                <i class="fas fa-cog" />
-              </Link>
-              <Link to="#">
-                <i class="fas fa-bars" />
-              </Link>
-            </div>
-            <h1>PANDAS</h1>
-          </div>
-
-          <div class="float-right">
-            <Link to="/widgetHeading">
-              <i class="fas fa-cog" />
-            </Link>
-            <Link to="#">
-              <i class="fas fa-bars" />
-            </Link>
-          </div>
-          <h4>
-            Amazing giant pandas wave hello to visitors at the National Zoo in
-            Washington, DC
-          </h4>
-
-          <div class="float-right">
-            <Link to="/WidgetImage">
-              <i class="fas fa-cog" />
-            </Link>
-            <Link to="#">
-              <i class="fas fa-bars" />
-            </Link>
-          </div>
-          <div>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEw06nFnrBXIByKqMgxzIP11olZ7BI9JFvdAQW583RhjwD0DMNag"
-              class="img-fluid"
-              alt="Pandas"
-            />
-          </div>
-
-          <div class="float-right">
-            <Link to="/widgetHeading">
-              <i class="fas fa-cog" />
-            </Link>
-            <Link to="#">
-              <i class="fas fa-bars" />
-            </Link>
-          </div>
-          <div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur{" "}
-              <Link to="http://nationalzoo.si.edu/Linknimals/giant-panda">
-                {" "}
-                adipisicing elit. Non,{" "}
-              </Link>
-              ratione quia exercitationem vero rem quod deserunt expedita, harum
-              provident necessitatibus placeat odit dolorum error ipsum
-              veritatis? Distinctio omnis accusamus et cumque temporibus sequi
-              sapiente veniam commodi, ad, dolorum eius itaque numquam voluptas
-              quas? Et aliquid facere labore, eveniet aperiam cumque.
-            </p>
-          </div>
-
-          <div class="float-right">
-            <Link to="/widgetHeading">
-              <i class="fas fa-cog" />
-            </Link>
-            <Link to="#">
-              <i class="fas fa-bars" />
-            </Link>
-          </div>
-          <h4>
-            Unbelievable once-in-a-lifetime experience playing with the giant
-            pandas, only in China
-          </h4>
-
-          <div class="float-right">
-            <Link to="/widgetYouTube">
-              <i class="fas fa-cog" />
-            </Link>
-            <Link to="#">
-              <i class="fas fa-bars" />
-            </Link>
-          </div>
-          <div>
-            <iframe
-              name="video"
-              src="https://www.youtube.com/embed/jyG9ZhkAQyc"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-          </div>
-
-          <div class="float-right">
-            <Link to="/widgetHeading">
-              <i class="fas fa-cog" />
-            </Link>
-            <Link to="#">
-              <i class="fas fa-bars" />
-            </Link>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quis
-            repellendus minus cupiditate, iure necessitatibus, aliquam fugiat
-            assumenda quae reprehenderit quos quaerat ipsam iusto expedita?
-            Quaerat animi doloremque reprehenderit eius unde officia illum
-            aperiam. Quidem amet, vero tenetur eos, itaque praesentium illo
-            consectetur animi provident sunt dignissimos vel voluptates
-            consequuntur?
-          </p>
-
-          <nav class="navbar navbar-light bg-light">
-            <div class="full-width">
-              <i class="fas fa-play text-primary" />
-              <i class="fas fa-eye text-primary" />
-              <Link class="float-right" to="./user/Profile">
-                <i class="fas fa-user text-primary" />
-              </Link>
-            </div>
+          <nav className="navbar navbar-light fixed-top bg-light">
+                <Link className="color-black" to={`/user/${uid}/website/${wid}/page`}>
+                <i className="fas fa-chevron-left" /></Link>
+                <span className="navbar-brand">Widgets</span>
+                <Link className="color-black" to={`/user/${uid}/website/${wid}/page/${pid}/widget/new`}>
+                <i className="fas fa-plus" /></Link>
           </nav>
 
-          <footer>
-            <p>
-              Note: The image, paragraphs, and YouTube video shown above are
-              only for illustration purposes. You can use your image,
-              paragraphs, and YouTube video
-            </p>
-          </footer>
-        </div>
-      </div>
-    );
-  }
+          <div className="container-fluid">
+              {
+                  widgets.map(
+                (widget) => {
+                switch(widget.widgetType){
+                case "HEADING":
+                return (
+                <div key={widget._id}>
+                <div className="absolute-right">
+                <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
+                <i className="fas fa-cog" /></Link>
+                <span> <i className="fas fa-bars" /></span>
+                </div>
+                <div>
+                                              
+                {widget.size === 1 && <h1>{widget.text}</h1>}
+                {widget.size === 2 && <h2>{widget.text}</h2>}
+                {widget.size === 3 && <h3>{widget.text}</h3>}
+                {widget.size === 4 && <h4>{widget.text}</h4>}
+                {widget.size === 5 && <h5>{widget.text}</h5>}
+                {widget.size === 6 && <h6>{widget.text}</h6>}
+                </div>
+                </div>
+                )
+                              
+                case "IMAGE":
+                return (
+                <div key={widget._id}>
+                <div className="absolute-right">
+                <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
+                <i className="fas fa-cog" /></Link>
+                <span><i className="fas fa-bars" /></span>
+                </div>
+                <div>
+                <img
+                className="img-fluid"
+                src={widget.url}
+                alt=""
+                width={widget.width}
+                />
+                </div>
+                </div>
+                )
+                
+                    case "YOUTUBE":
+                        return (
+                            <div key={widget._id}>
+                            <div className="absolute-right">
+                            <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
+                            <i className="fas fa-cog" /></Link>
+                            <span><i className="fas fa-bars" /></span>
+                            </div>
+                                                  
+                                <div className="embed-responsive embed-responsive-16by9" style={{width: widget.width}}>
+                                <iframe
+                                src={widget.url}
+                                title={widget._id}
+                                frameBorder="0"
+                                allow="autoplay; encrypted-media"
+                                allowFullScreen
+                                />
+                                </div>
+                                </div>
+                            )
+                                  default:
+                                      return null;
+                          }
+                      }
+                  )
+              }
+          
+          </div>
+          <footer className="navbar navbar-light fixed-bottom bg-light">
+        <div className="full-width">
+        <Link className="color-black float-right" to={`/user/${uid}`}><i className="fas fa-user" />
+        </Link>
+            </div>
+            </footer>
+            </div>
+  );
+}
 }

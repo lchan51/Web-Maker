@@ -60,35 +60,35 @@ export default class PageEdit extends Component {
 
     return (
       <div>
-        
-      <div>
-      <nav classNameName="navbar navbar-light bg-light fixed-top">
-      <Link to="/PageList"><i className="fas fa-chevron-left" /></Link>
+ 
+      <nav className="navbar navbar-light bg-light fixed-top"></nav>
+      <Link to={`/user/ ${uid}/website/${wid}/page`}><i className="fas fa-chevron-left" /></Link>
       <span className="navbar-brand mb-0 h1">Edit Page</span>
-      <button className=" btn float-right pt-2" form="editPageForm"><i className="fas fa-check pt-1/
-      </button>
-      </form>
-      </nav>
+      <button className="btn float-right pt-2" form="editPageForm"> 
+      <i className="fas fa-check pt-1"/>
+       </button>
+
+      <div className="form-group">
+      <form id="editPageForm"> onSubmit={this.onSubmit}>
+      <label htmlFor="name">Name</label>
+      <input className="form-control" 
+      type="text"
+      id= "name"
+      name="name" 
+      onChange={this.onChange} 
+      value={name}/>
+        
+
+      <div className="form-group">
+      <label htmlFor="title">Title</label>
+      <input className="form-control" type="text" id="title" name="title"
+      onChange={this.onChange} value={title}/>
       </div>
-
-        <form>
-          <div className="form-group">
-          <form id="editPageForm" onSubmit={this.onSubmit}> </form>
-            <label htmlFor="name">Name</label>
-            <input className="form-control" type="text id="name" name="name" onChange={this.onChange} value={name} />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="title">Title</label>
-            <input className="form-control" type="text" id="title" name="title onChange={this.onChange} value={title}
-          </div>
-        </form>
-
-        <Link to= {`/user/ ${uid}/website/${wid}/page`}className="btn btn-warning btn-block" to={`/user/${uid}/website/${wid}/page/list`>
-          Cancel
-        </Link>
-
-        <button 
+    
+      <Link to={`/user/${uid}/website/${wid}/page/list`} className="btn btn-warning btn-block">
+      Cancel
+      </Link>
+      <button
           type="button"
           onClick={this.onDelete}
           className="btn btn-danger btn-block">
@@ -96,6 +96,7 @@ export default class PageEdit extends Component {
         </button>
         </form>
         </div>
+
 
         <footer className="navbar navbar-light bg-light fixed-bottom">
           <div className="full-width">

@@ -255,11 +255,11 @@ class App extends Component {
           <Route
             exact
             path="/user/:uid/website/:wid/page/:pid/widget"
-            render={props => (<WidgetList {...props} users={this.state.users} />)}
+            render={props => (<WidgetList {...props} widgets={this.state.widgets} />)}
           />
           <Route
             exact path="/user/:uid/website/:wid/page/:pid/widget/new"
-    render={props => (<WidgetChooser {...props} users={this.state.users} />)}
+    render={props => (<WidgetChooser {...props} widgets={this.state.widgets} />)}
           />
         </Switch>
       </Router>

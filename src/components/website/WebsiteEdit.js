@@ -21,9 +21,9 @@ export default class WebsiteEdit extends Component {
         }
     }
   
-    getWebsite = (wid) => {
+    getWebsite = wid => {
     let currentWeb;
-    for (let website of this.props.website){
+    for (let website of this.props.websites){
     if(website._id===wid){
       currentWeb = website;
       break;
@@ -33,7 +33,7 @@ export default class WebsiteEdit extends Component {
         name: currentWeb.name,
         description: currentWeb.description
       });
-    }
+    };
 
 
   filterWebsites = (websites) => {

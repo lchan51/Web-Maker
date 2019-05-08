@@ -92,8 +92,8 @@ export default class Register extends Component {
             />
           </div>
         </form>
-
-        <button className="btn btn-primary btn-block">Register </button>
+        <Link to= "/user/:uid">
+        <button className="btn btn-primary btn-block">Register </button></Link>
         <button className="btn btn-danger btn-block">Cancel</button>
       </div>
     );

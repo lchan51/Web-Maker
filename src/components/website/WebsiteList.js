@@ -28,7 +28,6 @@ export default class WebsiteList extends Component {
           <Link to={`/user/${uid}`}>
             <i className="fas fa-chevron-left" />
           </Link>
-
           <span className="navbar-brand mb-0 h1"> Websites </span>
           <Link className="float-right" to="{`/user/${uid}/website/new">
             <i className="fas fa-plus"/></Link>
@@ -38,12 +37,12 @@ export default class WebsiteList extends Component {
           <ul className="list-group">
             {this.state.websites.map(
               (website) => (
-                <li key={website._id} className="list-group-item">
-                  <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
-                  <Link to={`/user/${uid}/website/${website._id}`}className="float-right">
-                    <i className="fas fa-cog"></i>
-                  </Link>
-                </li>
+              <li key={website._id} className="list-group-item">
+              <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
+              <Link to={`/user/${uid}/website/${website._id}`}className="float-right">
+              <i className="fas fa-cog"></i>
+              </Link>
+              </li>
               )
             )
             }
@@ -52,8 +51,8 @@ export default class WebsiteList extends Component {
 
         <nav className="navbar navbar-dark bg-primary fixed-bottom">
           <div className="full-width">
-            <Link className="float-right" to={`/user/${uid}`}>
-              <i className="fas fa-user" />
+          <Link className="float-right" to={`/user/${uid}`}>
+            <i className="fas fa-user" />
             </Link>
           </div>
         </nav>
