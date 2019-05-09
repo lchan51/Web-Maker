@@ -12,6 +12,7 @@ import PageNew from "./components/page/PageNew";
 import PageList from "./components/page/PageList";
 import WidgetList from "./components/widget/WidgetList";
 import WidgetChooser from "./components/widget/WidgetChooser";
+import WidgetEdit from "./components/widget/WidgetEdit"
 
 class App extends Component {
   state = {
@@ -116,7 +117,8 @@ class App extends Component {
         widgetType: "YOUTUBE",
         pageId: "321",
         width: "100%",
-        url: "https://youtu.be/AM2Ivdi9c4E"
+        url: <iframe width="560" height="315" src="https://www.youtube.com/embed/AM2Ivdi9c4E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       
       }
     ]
   }
@@ -217,6 +219,33 @@ class App extends Component {
             })
         }
 
+        editWidget = newWidget => {
+          const newWidgets = this.state.widgets.map(
+          (widget) => {
+            if (widget._id ===newWidget.id) {
+              widget = newWidget
+            }
+            return widget;
+          }
+          )
+          this.setState({
+            widgets: newWidgets
+          
+          })
+        }
+        
+        deleteWidget = (wgid) => {
+        const newWidgetss = this.state.widgetss.filter(
+          (widget) => (
+            widget._id !== wgid
+          )
+        )
+            this.setState({
+              widgets: newWidgets
+            })
+        }
+          
+
   render() {
     
     return (
@@ -259,12 +288,16 @@ class App extends Component {
           />
           <Route
             exact path="/user/:uid/website/:wid/page/:pid/widget/new"
-    render={props => (<WidgetChooser {...props} widgets={this.state.widgets} />)}
+          render={props => (<WidgetChooser {...props} widgets={this.state.widgets} addWidget={this.addWidget}/>)}
           />
+          <Route
+          exact path="/user/:uid/website/:wid/page/:pid/widget/:wgid"
+          render={props => (<WidgetEdit {...props} widgets={this.state.widgets} editWidget={this.editWidget} deleteWidget={this.deleteWidget}/>)}
+          />
+        	
         </Switch>
       </Router>
     );
-  }
     }
-
+  }
 export default App;
