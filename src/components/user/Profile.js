@@ -56,6 +56,7 @@ export default class Profile extends Component {
 
     return (
         <div>
+
         <nav className="navbar navbar-dark bg-primary fixed-top">
         <span className="navbar-brand mb-0 h1">Profile</span>
         <button className="btn" form="profileForm" href="profile.html">
@@ -67,7 +68,6 @@ export default class Profile extends Component {
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
-              placeholder="Enter or edit your username here"
               className="form-control"
               type="text"
               id="username"
@@ -79,7 +79,6 @@ export default class Profile extends Component {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
-              placeholder="Enter or edit your email here"
               type="email"
               className="form-control"
               id="email"
@@ -92,7 +91,6 @@ export default class Profile extends Component {
           <div className="form-group">
             <label htmlFor="firstName">First Name</label>
             <input
-              placeholder="Enter or edit your first name"
               type="firstName"
               className="form-control"
               id="firstName"
@@ -105,7 +103,6 @@ export default class Profile extends Component {
           <div className="form-group">
             <label htmlFor="lastName">Last Name</label>
             <input
-              placeholder="Enter or edit your last name"
               type="lastName"
               className="form-control"
               id="lastName"
@@ -114,27 +111,26 @@ export default class Profile extends Component {
               onChange={this.onChange}
             />
           </div>
-          
         </form>
-        
-
+    
         <Link className="btn btn-primary btn-block"
         to={`/user/${this.props.match.params.uid}/website`}>
         Websites
         </Link>
 
-        
-
         <Link className="btn btn-danger btn-block" 
         to="/login/">
         Logout 
         </Link>
+        </div>
 
-          <nav className="navbar navbar-dark bg-primary fixed-bottom" to="./user/:uid">
-          <i className="fas fa-user-primary" />
+        <nav className="navbar navbar-dark bg-primary fixed-bottom">
+        <div className="full-width">
+        <Link className="float-right to={`/user/${uid}`}"> <i className="fas fa-user"></i>
+          </Link>
+          </div>
           </nav>
           </div>
-          </div>
-    );
+    )
   }
 }

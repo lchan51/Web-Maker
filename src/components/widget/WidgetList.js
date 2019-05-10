@@ -34,12 +34,12 @@ render() {
   return (
 
       <div>
-          <nav className="navbar navbar-light fixed-top bg-light">
-                <Link className="color-black" to={`/user/${uid}/website/${wid}/page`}>
-                <i className="fas fa-chevron-left" /></Link>
-                <span className="navbar-brand">Widgets</span>
-                <Link className="color-black" to={`/user/${uid}/website/${wid}/page/${pid}/widget/new`}>
-                <i className="fas fa-plus" /></Link>
+            <nav className="navbar navbar-light fixed-top bg-light">
+            <Link className="color-black" to={`/user/${uid}/website/${wid}/page`}>
+            <i className="fas fa-chevron-left" /></Link>
+            <span className="navbar-brand">Widgets</span>
+            <Link className="color-black" to={`/user/${uid}/website/${wid}/page/${pid}/widget/new`}>
+            <i className="fas fa-plus" /></Link>
           </nav>
 
           <div className="container-fluid">

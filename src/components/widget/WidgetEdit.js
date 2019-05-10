@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 import WidgetHeading from "./WidgetHeading";
 import WidgetImage from "./WidgetImage";
 import WidgetYouTube from "./WidgetYouTube" 
-import { thisTypeAnnotation } from "@babel/types";
 
 
 export default class WidgetEdit extends Component {
-  state={
+    state={
     name: "",
     text: "",
     size: "",
-    WidgetType: "",
+    widgetType: "",
     width: "",
     url: "",
     uid: "",
@@ -27,24 +26,25 @@ componentDidMount(){
     wid: this.props.match.params.wid,
     pid: this.props.match.params.pid
   })
-
+}
   getWidget = (wgid) => {
     let currentWidget;
     for(let widget of this.props.widgets){
       if(widget._id === wgid){
         currentWidget=widget;
-        break
+        break;
       }
     }
     this.setState({
     name: currentWidget.name? currentWidget.name :"",
     text: currentWidget.text,
     size: currentWidget.size,
-    WidgetType: currentWidget.WidgetType,
+    widgetType: currentWidget.widgetType,
     width: currentWidget.width,
     url: currentWidget.url
     });
   }
+
   onChange = e => {
     this.setState ({
       [e.target.name]: e.target.value
@@ -56,7 +56,7 @@ componentDidMount(){
     const newWidget = {
       _id: this.props.match.params.wgid,
       name,
-      size parseInt(size), 
+      size: parseInt(size),
       text, 
       url, 
       width, 
@@ -70,54 +70,52 @@ componentDidMount(){
     const {uid, wid, pid} = this.state;
     this.props.deleteWidget(this.props.match.params.wgid);
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
-
   }
-}
+
 render() {
   
       const {name, text, size, width, widgetType, url, uid, wid, pid} = this.state;
-        if(WidgetType==="HEADING"){
+
+        if(widgetType==="HEADING"){
         return(
         <WidgetHeading 
           name={name}
           text={text}
           size={size}
           width={width}
-          widgetType={WidgetType}
+          widgetType={widgetType}
           url={url}
-          widget={widget} 
           uid={uid} 
           pid={pid} 
           wid={wid}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
-          onDelete={this.onDelete}>
+          onDelete={this.onDelete}/>);
 
-      }else if (WidgetType==="IMAGE"){
+      } else if(widgetType==="IMAGE"){
         return (
         <WidgetImage
           name={name}
           text={text}
           size={size}
           width={width}
-          WidgetType={WidgetType}
+          WidgetType={widgetType}
           url={url}
           uid={uid} 
           pid={pid} 
           wid={wid} 
           onChange={this.onChange}
           onSubmit={this.onSubmit}
-          onDelete={this.onDelete}>)
+          onDelete={this.onDelete}/>);
 
-      }else { 
-      
+      } else {
       return (
       <widgetYouTube
         name={name}
         text={text}
         size={size}
         width={width}
-        widgetType={WidgetType}
+        widgetType={widgetType}
         url={url}
         uid={uid} 
         pid={pid} 
@@ -125,19 +123,7 @@ render() {
         onChange={this.onChange}
         onSubmit={this.onSubmit}
         onDelete={this.onDelete}/>
-          );
-        }
+      )
       }
     }
-
-
-
-
-
-
-
-    }
-    }
- 
-
-
+  }

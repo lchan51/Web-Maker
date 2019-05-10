@@ -5,7 +5,7 @@ export default class WebsiteEdit extends Component {
   
   state = {
     uid: this.props.match.params.uid,
-    wid: this.props.match.params.id,
+    wid: this.props.match.params.wid,
     websites: [],
     name: "",
     description: ""
@@ -17,7 +17,7 @@ export default class WebsiteEdit extends Component {
   }
     componentDidUpdate(prevProps, prevState, snapshot){
       if(prevProps.match.params.wid !== this.props.match.params.wid){
-        this.getWebsite(this.props.match.params.wid)
+        this.getWebsite(this.props.match.params.wid);
         }
     }
   
@@ -33,15 +33,14 @@ export default class WebsiteEdit extends Component {
         name: currentWeb.name,
         description: currentWeb.description
       });
-    };
+    }
 
-
-  filterWebsites = (websites) => {
+  filterWebsites = websites => {
     const newWebsites = websites.filter(
       website => (website.developerId === this.state.uid)
       )
     this.setState({
-      websites: newWebsites})
+      websites: newWebsites});
   }
 
   onChange = e => {
@@ -60,6 +59,7 @@ export default class WebsiteEdit extends Component {
           this.props.history.push(`/user/${this.state.uid}/website`);
         }
 
+        
   render() {
     const { uid } = this.state;
 
@@ -73,9 +73,9 @@ export default class WebsiteEdit extends Component {
             </Link>
             <Link className="float-right pt-1" to={`/user/${uid}/website/new`}>
             <span className="navbar-brand mb-0 h1">Websites</span>
-              <i className="fas fa-plus pt-2" />
-            </Link>
+              <i className="fas fa-plus pt-2"></i></Link>
           </div>
+          </nav>
 
           <div className="col-lg-8">
             <Link to={`/user/${uid}/website`} className="d-lg-none">
@@ -88,26 +88,22 @@ export default class WebsiteEdit extends Component {
             <i className="fas fa-check pt-1"/>
             </button>
             </div>
-            </nav>
 
           <div className= "row">
           <div className = "col-lg-4 d-none d-lg-block alignment-left">
-            <ul className="list-group">
-            {
-              this.state.websites.map(
+          <ul className="list-group">
+            
+            {this.state.websites.map (
               (website) => (
               <li key={website._id} className = "list-group-item">
               <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
               <Link to={`/user/${uid}/website/${website._id}`}className="float-right">
               <i className="fas fa-cog"></i></Link>
               </li>
-              )
-            )
-                }
-
-            </ul>
-          </div>
-          </div>       
+              ))}
+              </ul>
+            </div>
+            </div>       
 
           <div className="col-lg-8">
               <form id="editWebForm" onSubmit={this.onSubmit}>
@@ -151,19 +147,12 @@ export default class WebsiteEdit extends Component {
                 </form>
                 </div>
 
-                <nav className="navbar navbar-dark bg-primary fixed-bottom">
+                <nav className="navbar navbar-dark bg-primary fixed-bottom"> 
                 <div className="full-width">
-                
                 <Link className="color-white float-right" to={`/user/${uid}`}>
-                <i className="fas fa-user" />
-                </Link>
+                <i className="fas fa-user"></i></Link>
                 </div>
                 </nav>
                 </div>
-                
-              
-
-
-                );
-              }
-            }
+          
+                )}}

@@ -45,9 +45,8 @@ export default class WebsiteNew extends Component {
       developerId: uid,
       description
     };
-
     this.props.addWeb(newWeb);
-    this.props.history.pushState(`/user/${this.state.uid}/website`);
+    this.props.history.push (`/user/${this.state.uid}/website`);
 
   };
 
@@ -57,7 +56,7 @@ export default class WebsiteNew extends Component {
       <div>
         <nav className="navbar navbar-dark bg-primary fixed-top row">
           <div className="col-lg-4 d-none d-lg-block">
-            <Link to={`/user/${uid}/website`}>
+            <Link to={`/user/${this.props.match.params.uid}/website`}>
               <i className="fas fa-chevron-left" />
             </Link>
             <span className="navbar-brand mb-0 h1">Websites</span>
@@ -118,13 +117,13 @@ export default class WebsiteNew extends Component {
             </div>
 
             <Link
-                to={`/user/${uid}/website`}
+                to={`/user/${this.props.match.params.uid}/website`}
                 className="btn btn-lg btn-warning">
                 Cancel
                 </Link>
+
                 <button
-                className="btn btn-lg btn-success float-right"
-                                >
+                className="btn btn-lg btn-success float-right"             >
                 Submit
                 </button>
           </form>

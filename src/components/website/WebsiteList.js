@@ -25,20 +25,20 @@ export default class WebsiteList extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-primary fixed-top">
-          <Link to={`/user/${uid}`}>
-            <i className="fas fa-chevron-left" />
-          </Link>
+          
+          <Link to={`/user/${uid}`}> <i className="fas fa-chevron-left"></i></Link>
           <span className="navbar-brand mb-0 h1"> Websites </span>
-          <Link className="float-right" to="{`/user/${uid}/website/new">
+          <Link className="float-right" to={`/user/${uid}/website/new`}>
             <i className="fas fa-plus"/></Link>
         </nav>
 
-        <section className="container-left">
+        
           <ul className="list-group">
             {this.state.websites.map(
               (website) => (
               <li key={website._id} className="list-group-item">
               <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
+
               <Link to={`/user/${uid}/website/${website._id}`}className="float-right">
               <i className="fas fa-cog"></i>
               </Link>
@@ -47,7 +47,7 @@ export default class WebsiteList extends Component {
             )
             }
           </ul>
-        </section>
+      
 
         <nav className="navbar navbar-dark bg-primary fixed-bottom">
           <div className="full-width">

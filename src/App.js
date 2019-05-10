@@ -229,21 +229,30 @@ class App extends Component {
           }
           )
           this.setState({
-            widgets: newWidgets
-          
+            widgets: newWidgets 
           })
         }
         
         deleteWidget = (wgid) => {
-        const newWidgetss = this.state.widgetss.filter(
+        const newWidgets = this.state.widgets.filter(
           (widget) => (
             widget._id !== wgid
           )
         )
-            this.setState({
-              widgets: newWidgets
+        this.setState({
+          widgets: newWidgets
             })
         }
+
+        addWidget = newWidget => {
+          const newWidgets = this.state.widgets;
+          newWidgets.push(newWidget);
+          this.setState({
+            widgets: newWidgets
+          });
+        }
+
+    
           
 
   render() {

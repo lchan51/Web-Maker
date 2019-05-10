@@ -3,16 +3,16 @@ import {Link} from "react-router-dom";
 
 export default class WidgetHeading extends Component {
 
-  onChange = e => {
+  onChange = e => (
   this.props.onChange(e)
-  }
+  )
   
   onSubmit =e => (
-    this.props.onSubmit (e)
+    this.props.onSubmit(e)
   )
 
   onDelete = e => (
-    this.props.onDelete();
+    this.props.onDelete(e)
   )
 
 
