@@ -44,19 +44,19 @@ render() {
 
           <div className="container-fluid">
               {
-                  widgets.map(
+                widgets.map(
                 (widget) => {
                 switch(widget.widgetType){
                 case "HEADING":
                 return (
                 <div key={widget._id}>
-                <div className="absolute-right">
+                <div className="float-right">
                 <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
                 <i className="fas fa-cog" /></Link>
                 <span> <i className="fas fa-bars" /></span>
                 </div>
-                <div>
-                                              
+
+                <div>                           
                 {widget.size === 1 && <h1>{widget.text}</h1>}
                 {widget.size === 2 && <h2>{widget.text}</h2>}
                 {widget.size === 3 && <h3>{widget.text}</h3>}
@@ -70,11 +70,12 @@ render() {
                 case "IMAGE":
                 return (
                 <div key={widget._id}>
-                <div className="absolute-right">
+                <div className="float-right">
                 <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
                 <i className="fas fa-cog" /></Link>
                 <span><i className="fas fa-bars" /></span>
                 </div>
+                
                 <div>
                 <img
                 className="img-fluid"
@@ -89,7 +90,7 @@ render() {
                     case "YOUTUBE":
                         return (
                             <div key={widget._id}>
-                            <div className="absolute-right">
+                            <div className="float-right">
                             <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
                             <i className="fas fa-cog" /></Link>
                             <span><i className="fas fa-bars" /></span>
@@ -107,7 +108,7 @@ render() {
                                 </div>
                             )
                                   default:
-                                      return null;
+                                      return;
                           }
                       }
                   )

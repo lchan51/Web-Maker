@@ -15,33 +15,36 @@ export default class PageList extends Component {
         wid: this.props.match.params.wid
       })
 
-      this.filterPage = (wid)=> {
-        const currentPages=this.props.pages.filter(
-          (page)=> (page.websiteId ===wid)
-          )
-          this.setState({
-            pages: currentPages
-          })
-        }
+      this.filterPage(this.state.wid);
+    }
+
+    filterPage = (wid)=> {
+      const currentPages=this.props.pages.filter(
+        (page)=> (page.websiteId ===wid)
+        )
+        this.setState({
+          pages: currentPages
+        })
       }
+      
 
   render() {
     const {uid, wid} = this.state;
-
+ 
     return (
       <div>
 
           <nav className="navbar fixed-top navbar-light bg-light fixed-top">
-          <Link to={`/user/${uid}/website/WebsiteList`}>
+          <Link to={`/user/${this.props.match.params.uid}/website`}>
           <i className="fas fa-chevron-left" />
           </Link>
-          <span className="navbar-brand mb-0 h1">Pages</span>
-          <Link to={`user/${uid}/website/${wid}/page/new`}>
-          <i className="fas fa-plus"/> </Link>
+          <span className="navbar-brand mb-0 h1">Pages </span>
+          <Link className="float-right" to={`/user/${uid}/website/${wid}/page/new`}>
+          <i className="fas fa-plus-right"/></Link>
+        
         </nav>
 
         <div className="container-left">
-          <ul className="list">
             <ul className="list-group">
             
             {
@@ -54,7 +57,6 @@ export default class PageList extends Component {
                 )
                 )
                 }
-                  </ul>
                   </ul>
                 </div>
 

@@ -124,12 +124,7 @@ export default class Profile extends Component {
         </Link>
         </div>
 
-        <nav className="navbar navbar-dark bg-primary fixed-bottom">
-        <div className="full-width">
-        <Link className="float-right to={`/user/${uid}`}"> <i className="fas fa-user"></i>
-          </Link>
-          </div>
-          </nav>
+        
           </div>
     )
   }

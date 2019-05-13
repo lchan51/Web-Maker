@@ -34,10 +34,10 @@ export default class WidgetImage extends Component {
                 onChange={this.onChange}
                 value={name}/>
                 </div>
-               
+              
                 <div className="form-group">
                 <label htmlFor="URL">URL</label>
-                <input id="url" name="url" type="text" Value="https://i.kinja-img.com/gawker-media/image" className="form-control"
+                <input id="url" name="url" type="text" className="form-control"
                 onChange={this.onChange}
                 value={url}/>
                 </div>        

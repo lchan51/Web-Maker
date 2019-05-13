@@ -67,7 +67,7 @@ export default class PageNew extends Component {
 
             <div className="form-group">
               <label htmlFor="title">Title</label>
-              <input className="form-control" name="title" value="Page Title"
+              <input className="form-control" name="title" 
               onChange={this.onChange} 
               value={title}/>
             </div>

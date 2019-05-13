@@ -111,7 +111,6 @@ export default class WebsiteNew extends Component {
                 id="description"
                 name="description"
                 placeholder="Description"
-                name="description"
                 onChange={this.onChange}
                 value={this.state.description}/>
             </div>

@@ -117,8 +117,7 @@ class App extends Component {
         widgetType: "YOUTUBE",
         pageId: "321",
         width: "100%",
-        url: <iframe width="560" height="315" src="https://www.youtube.com/embed/AM2Ivdi9c4E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-       
+        url: <iframe width="560" height="315" src="https://www.youtube.com/embed/AM2Ivdi9c4E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
       }
     ]
   }
