@@ -17,6 +17,7 @@ h1 {
 }
 
 nav a,
+nav span,
 nav button i {
   color: White;
 }
@@ -37,31 +38,16 @@ label {
   padding-left: 40px;
 }
 
-.form-group {
-  margin-top: 10px;
-  margin-left: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
-  margin-bottom: 10px;
-  padding-bottom: 1opx;
-}
+
 
 .list-group-item {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-form {
-  margin-top: 20px;
-  padding-bottom: 20px;
-  margin-right: 20px;
-}
 
-.btn {
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
+
+
 
 .full-width {
   width: 100%;

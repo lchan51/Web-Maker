@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+
 
 export default class Login extends Component {
   state = {
@@ -63,16 +66,14 @@ export default class Login extends Component {
               onChange={this.onChange}
             />
           </div>
-        
+          
         <button className="btn btn-success btn-block">Login</button>
-        
         <button className="btn btn-primary btn-block" to="/register/">
-          Register
-        </button>
-
-        </form>
+          Register </button>
+          </form>
       </div>
       </div>
     );
   }
 }
+

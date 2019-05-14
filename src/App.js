@@ -52,28 +52,13 @@ class App extends Component {
     ],
 
     websites: [
-      {
-        _id: "123",
-        name: "Facebook",
-        developerId: "456",
-        description: "Lorem"
-      },
-      { _id: "234", name: "Tweeter", developerId: "456", description: "Lorem" },
-      { _id: "456", name: "Gizmodo", developerId: "456", description: "Lorem" },
-      { _id: "890", name: "Go", developerId: "123", description: "Lorem" },
-      {
-        _id: "567",
-        name: "Tic Tac Toe",
-        developerId: "123",
-        description: "Lorem"
-      },
-      {
-        _id: "678",
-        name: "Checkers",
-        developerId: "123",
-        description: "Lorem"
-      },
-      { _id: "789", name: "Chess", developerId: "234", description: "Lorem" }
+      {_id: "123", name: "Facebook", developerId: "456", description: "Lorem"},
+      {_id: "234", name: "Tweeter", developerId: "456", description: "Lorem" },
+      {_id: "456", name: "Gizmodo", developerId: "456", description: "Lorem" },
+      {_id: "890", name: "Go", developerId: "123", description: "Lorem" },
+      {_id: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem"},
+      {_id: "678", name: "Checkers", developerId: "123", description: "Lorem"},
+      {_id: "789", name: "Chess", developerId: "234", description: "Lorem" }
     ],
 
     pages: [
@@ -117,7 +102,7 @@ class App extends Component {
         widgetType: "YOUTUBE",
         pageId: "321",
         width: "100%",
-        url: <iframe width="560" height="315" src="https://www.youtube.com/embed/AM2Ivdi9c4E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
+        url: "https://www.youtube.com/embed/AM2Ivdi9c4E"
       }
     ]
   }
@@ -175,9 +160,9 @@ class App extends Component {
     editWeb = (wid, name, description) => {
       this.setState({
         websites: this.state.websites.map ((website) => {
-          if (wid === website._id) {
-            website.name = name;
-            website.description = description
+        if (wid === website._id) {
+          website.name = name;
+          website.description = description
           }
           return website;
       })

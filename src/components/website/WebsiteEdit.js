@@ -65,57 +65,52 @@ export default class WebsiteEdit extends Component {
     const { uid } = this.state;
 
     return (
-
       <div>
-          
-          <nav className="navbar navbar-dark bg-primary fixed-top row">
-
+        <nav className="navbar navbar-dark bg-primary fixed-top row">
           <div className="col-lg-4 d-none d-lg-block">
-          <Link className="float-left" to= {`/user/${uid}/website`}>
-          <i className="fas fa-chevron-left"></i> </Link>
-          <span className="navbar-brand mb-01 h1">Websites</span>
-          <Link className="float-right" to={`/user/${uid}/website`}><i className= "fas fa-plus pt-2"></i>
-          </Link> </div>
-
-        
-          <div className="col-lg-8">
-          <Link to={`/user/${uid}/website`}><i className="fas fa-chevron-left"></i></Link>
-          <span className="navbar-brand mb-0 h1">Edit Website </span>
-          <Link className="float-right" to={`/user/${uid}/website`}><i className= "fas fa-plus pt-2"></i>
-          </Link>
+            <Link className="float-left" to= {`/user/${uid}/website`}>
+              <i className="fas fa-chevron-left"></i>
+            </Link>
+            <span><strong>Websites</strong></span>
+            <Link className="float-right" to={`/user/${uid}/website`}>
+              <i className= "fas fa-plus pt-2"></i>
+            </Link>
           </div>
-          </nav>
-      
-          <div className= "row col-lg-4 d-none d-lg-block alignment-left">
-          <div className="container-fluid">
-          <ul className="list-group">
-          {this.state.websites.map (
-            (website) => (
-            <li key={website._id} className = "list-group-item">
-            <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
-            <Link to={`/user/${uid}/website/${website._id}`}className="float-left">
-          <i className="fas fa-cog"></i></Link>
-          </li>
-          ))}
-           </ul>
-           </div>
-           </div>
+          <div className="col-lg-8 d-lg-block float-right">
+            <Link to={`/user/${uid}/website`}><i className="fas fa-chevron-left"></i></Link>
+            <span><strong>Edit Website </strong></span>
+            <button className="float-right btn" form="editWebForm">
+              <i className="fas fa-edit pt-2"></i>
+            </button>
+          </div>
+        </nav>
 
-              <div className="row col-lg-8 alignment-right">
-              <div className="container-fluid">
-              <form id="editWebForm" onSubmit={this.onSubmit}>
+        <div className= "row">
+          <div className="col-lg-4 d-none d-lg-block mt-4">
+            <ul className="list-group">
+              {this.state.websites.map (
+              (website) => (
+              <li key={website._id} className = "list-group-item">
+              <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
+              <Link to={`/user/${uid}/website/${website._id}`}className="float-left">
+              <i className="fas fa-cog"></i></Link>
+              </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-lg-8 d-lg-block">
+            <form id="editWebForm" onSubmit={this.onSubmit}>
               <div className="form-group">
-              <label htmlFor="name">Website Name</label>
-              <input id="name"
-              name="name" 
-                className="form-control"
-                type="text"
-                placeholder="Name of the Website"
-                value={this.state.name}
-                onChange={this.onChange}/>
-                </div>
-                
-                <div className="form-group">
+                <label htmlFor="name">Website Name</label>
+                <input id="name"
+                  name="name" 
+                  className="form-control"
+                  type="text"
+                  placeholder="Name of the Website"
+                  value={this.state.name}
+                  onChange={this.onChange}/>
+              </div>
+              <div className="form-group">
                 <label htmlFor="description">Website Description</label>
                 <textarea
                   className="form-control"
@@ -124,25 +119,24 @@ export default class WebsiteEdit extends Component {
                   name="description"
                   type="text"
                   placeholder="Description"
-                  value={this.state.description}S
+                  value={this.state.description}
                   onChange={this.onChange}>
                 </textarea>
-                </div>
-             
-                <Link to={`/user/${uid}/website`}
+              </div>
+              <Link to={`/user/${uid}/website`}
                 className="btn btn-lg btn-warning float-right">
                 Cancel
-                </Link>
-                                
-                <button
+              </Link>                
+              <button
                 type="button"
                 onClick={this.deleteWeb}
                 className="btn btn-lg btn-danger float-right">
                 Delete
-                </button>
-                </form>
-                </div>
-              
+              </button>
+            </form>
+          </div>
+        </div>
+               
                 <nav className="navbar navbar-dark bg-primary fixed-bottom"> 
                 <div className="full-width">
                 <Link className="color-white float-right" to={`/user/${uid}`}>
@@ -150,11 +144,8 @@ export default class WebsiteEdit extends Component {
                 </div>
                 </nav>
                 </div>
-                </div>
-              
-              
-                
-                
+            
+        
     );
             }
           }

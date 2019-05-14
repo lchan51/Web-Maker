@@ -7,6 +7,7 @@ export default class Register extends Component {
     username: "",
     password: "",
     password2: ""
+
   };
 
   onChange = e => {
@@ -92,9 +93,9 @@ export default class Register extends Component {
             />
           </div>
         </form>
-        <Link to= "/user/:uid">
-        <button className="btn btn-primary btn-block">Register </button></Link>
-        <button className="btn btn-danger btn-block">Cancel</button>
+
+        <button className="btn btn-primary btn-block">Register </button>
+        <Link className="btn btn-danger btn-block" to="/login/"> Cancel </Link>
       </div>
     );
   }

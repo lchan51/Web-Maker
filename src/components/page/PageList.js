@@ -60,12 +60,12 @@ export default class PageList extends Component {
                   </ul>
                 </div>
 
-        <nav className="navbar navbar-light bg-light fixed-bottom">
-        <div className="full-width">
-          <Link className="float-right" to={`/user/{uid}`}>
-            <i className="fas fa-user" />
-          </Link>
-        </div>
+          <nav className="navbar navbar-dark bg-primary fixed-bottom">
+          <div className="full-width">
+          <Link className="float-right" to={`/user/${uid}`}>
+          <i className="fas fa-user" />
+            </Link>
+          </div>
         </nav>
 
         </div>

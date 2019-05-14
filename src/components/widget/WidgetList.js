@@ -49,66 +49,66 @@ render() {
                 switch(widget.widgetType){
                 case "HEADING":
                 return (
-                <div key={widget._id}>
-                <div className="float-right">
-                <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
-                <i className="fas fa-cog" /></Link>
-                <span> <i className="fas fa-bars" /></span>
-                </div>
-
-                <div>                           
-                {widget.size === 1 && <h1>{widget.text}</h1>}
-                {widget.size === 2 && <h2>{widget.text}</h2>}
-                {widget.size === 3 && <h3>{widget.text}</h3>}
-                {widget.size === 4 && <h4>{widget.text}</h4>}
-                {widget.size === 5 && <h5>{widget.text}</h5>}
-                {widget.size === 6 && <h6>{widget.text}</h6>}
-                </div>
-                </div>
-                )
-                              
-                case "IMAGE":
-                return (
-                <div key={widget._id}>
-                <div className="float-right">
-                <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
-                <i className="fas fa-cog" /></Link>
-                <span><i className="fas fa-bars" /></span>
-                </div>
-                
-                <div>
-                <img
-                className="img-fluid"
-                src={widget.url}
-                alt=""
-                width={widget.width}
-                />
-                </div>
-                </div>
-                )
-                
-                    case "YOUTUBE":
+                    <div key={widget._id}>
+                    <div className="float-right">
+                    <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
+                    <i className="fas fa-cog" /></Link>
+                    <span> <i className="fas fa-bars" /></span>
+                    </div>
+    
+                    <div>                           
+                    {widget.size === 1 && <h1>{widget.text}</h1>}
+                    {widget.size === 2 && <h2>{widget.text}</h2>}
+                    {widget.size === 3 && <h3>{widget.text}</h3>}
+                    {widget.size === 4 && <h4>{widget.text}</h4>}
+                    {widget.size === 5 && <h5>{widget.text}</h5>}
+                    {widget.size === 6 && <h6>{widget.text}</h6>}
+                    </div>
+                    </div>
+                    )
+                                  
+                    case "IMAGE":
+                    return (
+                    <div key={widget._id}>
+                    <div className="float-right">
+                    <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
+                    <i className="fas fa-cog" /></Link>
+                    <span><i className="fas fa-bars" /></span>
+                    </div>
+                    
+                    <div>
+                    <img
+                    className="img-fluid"
+                    src={widget.url}
+                    alt=""
+                    width={widget.width}
+                    />
+                    </div>
+                    </div>
+                    )
+                    
+                        case "YOUTUBE":
                         return (
-                            <div key={widget._id}>
-                            <div className="float-right">
-                            <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
-                            <i className="fas fa-cog" /></Link>
-                            <span><i className="fas fa-bars" /></span>
+                        <div key={widget._id}>
+                        <div className="float-right">
+                        <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
+                        <i className="fas fa-cog" /></Link>
+                        <span><i className="fas fa-bars" /></span>
+                        </div>
+                                                      
+                        <div className="embed-responsive embed-responsive-16by9" style={{width: widget.width}}>
+                        <iframe
+                            src={widget.url}
+                            title={widget._id}
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen/>
                             </div>
-                                                  
-                                <div className="embed-responsive embed-responsive-16by9" style={{width: widget.width}}>
-                                <iframe
-                                src={widget.url}
-                                title={widget._id}
-                                frameBorder="0"
-                                allow="autoplay; encrypted-media"
-                                allowFullScreen
-                                />
-                                </div>
-                                </div>
-                            )
-                                  default:
-                                      return;
+                            </div>
+                                )
+                            
+                default:
+                    return;
                           }
                       }
                   )
