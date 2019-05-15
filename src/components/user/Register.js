@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import uuid from "uuid";
+import axios from "axios"
 
 export default class Register extends Component {
   state = {
@@ -22,7 +23,7 @@ export default class Register extends Component {
     this.register(username, password, password2);
   };
 
-  register(username, password, password2) {
+  register (username, password, password2) {
     if (password !== password2) {
       alert("The passwords do not match");
       return;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 
 
@@ -26,13 +27,7 @@ export default class Login extends Component {
   }
 
   login = user => {
-    for (let item of this.props.users) {
-      if (item.username === user.username && item.password === user.password) {
-        this.props.history.push("/user/" + item._id);
-        return;
-      }
-    }
-    alert("Your username or password doesn't match or records");
+    axios.get(`/api/user?username=${user.username}&password=${user.password}`)
   }
 
   render() {
@@ -68,8 +63,8 @@ export default class Login extends Component {
           </div>
           
         <button className="btn btn-success btn-block">Login</button>
-        <button className="btn btn-primary btn-block" to="/register/">
-          Register </button>
+        <Link className="btn btn-primary btn-block" to="/register/">
+          Register </Link>
           </form>
       </div>
       </div>
