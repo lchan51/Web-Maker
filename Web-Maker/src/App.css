@@ -1,0 +1,85 @@
+body {
+  padding-top: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+a,
+a:hover {
+  margin-right: 30px;
+  text-decoration: none;
+}
+h1 {
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+nav a,
+nav span,
+nav button i {
+  color: White;
+}
+
+nav.navbar-dark a {
+  color: white;
+}
+nav.navbar-light a {
+
+
+  color: mediumblue;
+}
+
+label {
+  font-weight: 700;
+}
+
+.navbar-brand {
+  margin-left: 30px;
+  padding-left: 40px;
+}
+
+
+.list-group-item {
+  margin-top: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-group {
+  margin-top: 20px
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+/* Widgets */
+
+.icon-right {
+  position: absolute;
+  right: 15px;
+  z-index: 1;
+  background: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.fa-check{
+  color: #4285F4
+
+}
+
+.fa-plus{
+  color: white
+}
+
+.footer {
+  padding-bottom: 100px;
+}
+
+.btn {
+  margin-right: 20px
+}
