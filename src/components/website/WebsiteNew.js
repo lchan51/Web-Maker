@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import uuid from "uuid";
+import axios from "axios"
 
 export default class WebsiteNew extends Component {
   
@@ -11,8 +12,9 @@ export default class WebsiteNew extends Component {
     description: ""
   };
 
-  componentDidMount() {
-    this.filterWebsites(this.props.websites);
+  async componentDidMount() {
+    const res = await axios.get (`/api/user/${this.state.uid}/website`)
+    this.filterWebsites(res.data);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot){
@@ -36,7 +38,7 @@ export default class WebsiteNew extends Component {
     });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
     const {name, description, uid} = this.state;
     const newWeb = {
@@ -45,9 +47,8 @@ export default class WebsiteNew extends Component {
       developerId: uid,
       description
     };
-    this.props.addWeb(newWeb);
+    await axios.post("/api/website", newWeb);
     this.props.history.push (`/user/${this.state.uid}/website`);
-
   };
 
   render() {
@@ -67,7 +68,7 @@ export default class WebsiteNew extends Component {
           </div>
 
           <div className="col-lg-8 d-lg-block float-right">
-            <Link to="/user/:uid/website">
+            <Link to={`/user/${uid}/website`}>
               <i className="fas fa-chevron-left" />
             </Link>
             <button form="newWebForm" className="btn float-right">

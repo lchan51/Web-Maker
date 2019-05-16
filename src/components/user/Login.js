@@ -26,10 +26,15 @@ export default class Login extends Component {
     this.login(user);
   }
 
-  login = user => {
-    axios.get(`/api/user?username=${user.username}&password=${user.password}`)
+  login = async user => {
+    const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)
+    if (res.data) {
+      this.props.history.push(`/user/${res.data._id}`);
+    }else {
+      alert ("Your username and/or password doesn't match our records")
+    }
   }
-
+    
   render() {
     return (
       <div>

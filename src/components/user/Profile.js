@@ -1,45 +1,53 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default class Profile extends Component {
-  state = {
+state = {
     username: "",
     password: "",
     email: "",
     firstName: "",
-    lastName: ""
+    lastName: "",
+    oldUsername:""
   };
-  componentDidMount() {
+async componentDidMount() {
     const uid = this.props.match.params.uid;
-    for (let user of this.props.users) {
-      if (user._id === uid) {
-        this.showUser(user);
-        return;
-      }
+    const res = await axios.get (`/api/user/${uid}`);
+    if(res.data) {
+      this.showUser(res.data);
+    } else {
+      alert("No user is found with given id");
     }
-    alert("No user is found with given id");
   }
 
-  showUser = user => {
-    const { username, password, email, firstName, lastName } = user;
+showUser = user => {
+    const { username, password, email, firstName, lastName, oldUsername } = user;
     this.setState({
       username,
       password,
       email,
       firstName,
-      lastName
+      lastName,
+      oldUsername: username
     });
   };
 
-  onChange = e => {
+onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  onSubmit = e => {
+onSubmit = async e => {
     e.preventDefault();
-    const { username, password, email, firstName, lastName } = this.state;
+    const { username, password, email, firstName, lastName, oldUsername } = this.state;
+    if (username !==oldUsername){ 
+    const res = await axios.get(`/api/user?username=${username}`);
+    if (res.data) {alert("Username is taken, please try another one ");
+    return
+    }
+  }
     const newUser = {
       _id: this.props.match.params.uid,
       username,
@@ -48,8 +56,10 @@ export default class Profile extends Component {
       firstName,
       lastName
     };
-    this.props.updateUser(newUser);
-  };
+    const res = await axios.put("/api/user", newUser);
+    alert ("Your update has been completed")
+    this.showUser(res.data)
+}
 
   render() {
     const { username, email, firstName, lastName } = this.state;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 export default class WebsiteEdit extends Component {
   
@@ -11,20 +12,15 @@ export default class WebsiteEdit extends Component {
     description: ""
   }
 
-  componentDidMount() {
-    this.filterWebsites(this.props.websites);
+    async componentDidMount() {
+    const res = await axios.get (`/api/user/${this.state.uid}/website`)
+    await this.filterWebsites(res.data);
     this.getWebsite(this.state.wid)
   }
 
-    componentDidUpdate(prevProps, prevState, snapshot){
-      if(prevProps.match.params.wid !== this.props.match.params.wid){
-        this.getWebsite(this.props.match.params.wid);
-        }
-    }
-  
     getWebsite = wid => {
     let currentWeb;
-    for (let website of this.props.websites){
+    for (let website of this.state.websites){
     if(website._id===wid){
       currentWeb = website;
       break;
@@ -36,29 +32,36 @@ export default class WebsiteEdit extends Component {
       });
     }
 
-  filterWebsites = websites => {
+    filterWebsites = websites => {
     const newWebsites = websites.filter(
       website => (website.developerId === this.state.uid)
       )
     this.setState({
-      websites: newWebsites});
+    websites: newWebsites});
   }
 
-  onChange = e => {
-    this.setState({
+      onChange = e => {
+      this.setState({
       [e.target.name]: e.target.value
     });
   }
-        deleteWeb = () => {
-          this.props.deleteWeb(this.props.match.params.wid);
+        deleteWeb = async () => {
+          await axios.delete (`/api/website/${this.state.wid}`);
           this.props.history.push(`/user/${this.state.uid}/website`)
         }
 
-        onSubmit = e => {
+        onSubmit = async e => {
           e.preventDefault();
-          this.props.editWeb(this.props.match.params.wid, this.state.name, this.state.description);
+          
+          const newWeb = {
+            _id: this.state.wid,
+            name: this.state.name,
+            description: this.state.description,
+            developerId: this.state.uid
+          }
+          await axios.put ("/api/website", newWeb);
           this.props.history.push(`/user/${this.state.uid}/website`);
-        }
+        };
 
         
   render() {
