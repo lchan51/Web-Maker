@@ -12,7 +12,7 @@ module.exports = function (app)
          let user;
          if(username && password){
           user = users.find((user) => {
-            return user.username ===username && user.password === password
+            return user.username === username && user.password === password
           })
         }
           if(username) {
@@ -24,10 +24,12 @@ module.exports = function (app)
         })
 
       app.post("/api/user", (req, res)=> {
-            const user=req.body
+            const user = req.body
             users.push(user);
             res.json(user);
           })
+            
+          
            
       app.get("/api/user/:uid", (req, res) => {
             const uid = req.params["uid"];

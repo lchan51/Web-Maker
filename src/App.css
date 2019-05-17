@@ -21,12 +21,12 @@ nav span,
 nav button i {
   color: White;
 }
-
+navbar 
 nav.navbar-dark a {
   color: white;
 }
-nav.navbar-light a {
-  color: mediumblue;
+nav.navbar-light i {
+  color:black;
 }
 
 label {
@@ -50,6 +50,7 @@ label {
 /* Widgets */
 
 .icon-right {
+  color: black;
   position: absolute;
   right: 15px;
   z-index: 1;
@@ -58,8 +59,9 @@ label {
   padding: 5px;
 }
 
+
 .fa-check{
-  color: #4285F4
+  color: white
 
 }
 
@@ -72,4 +74,8 @@ label {
 }
 .btn {
   margin-right: 20px;
+}
+
+.fa-cog{
+  color: #007bff
 }

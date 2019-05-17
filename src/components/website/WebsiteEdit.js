@@ -50,40 +50,40 @@ export default class WebsiteEdit extends Component {
           this.props.history.push(`/user/${this.state.uid}/website`)
         }
 
-        onSubmit = async e => {
+        onSubmit = async e => { 
           e.preventDefault();
-          
-          const newWeb = {
-            _id: this.state.wid,
+          const newWeb = 
+          {
+           _id: this.state.wid,
             name: this.state.name,
             description: this.state.description,
             developerId: this.state.uid
           }
-          await axios.put ("/api/website", newWeb);
+        
+          await axios.put("/api/website", newWeb);
           this.props.history.push(`/user/${this.state.uid}/website`);
         };
-
-        
+      
   render() {
     const { uid } = this.state;
 
     return (
       <div>
-        <nav className="navbar navbar-dark bg-primary fixed-top row">
+        <nav className="navbar mb-0 h5 navbar-dark bg-primary fixed-top row">
           <div className="col-lg-4 d-none d-lg-block">
             <Link className="float-left" to= {`/user/${uid}/website`}>
               <i className="fas fa-chevron-left"></i>
             </Link>
-            <span><strong>Websites</strong></span>
+            <span className navbar-brand mb-0 h1> Websites </span>
             <Link className="float-right" to={`/user/${uid}/website`}>
               <i className= "fas fa-plus pt-2"></i>
             </Link>
           </div>
           <div className="col-lg-8 d-lg-block float-right">
             <Link to={`/user/${uid}/website`}><i className="fas fa-chevron-left"></i></Link>
-            <span><strong>Edit Website </strong></span>
+            <span className navbar-brand mb-0 h1> Edit Website </span>
             <button className="float-right btn" form="editWebForm">
-              <i className="fas fa-edit pt-2"></i>
+              <i className="fas fa-check"></i>
             </button>
           </div>
         </nav>

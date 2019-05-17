@@ -20,31 +20,34 @@ export default class Register extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { username, password, password2 } = this.state;
+    const {username, password, password2} = this.state;
     this.register(username, password, password2);
-  };
+}
 
-  async register (username, password, password2) {
-    if (password !== password2) {
-      alert("The passwords do not match");
-      return;
+async register(username, password, password2) {
+    if(password !== password2) {
+        alert("The passwords do not match");
+        return;
     }
     const res = await axios.get(`/api/user?username=${username}`);
-    if (res.data){alert("Username is taken, please try another one ");
-    return
-  } else {
-    const newUser = {
-      _id: uuid(),
-      username,
-      password,
-      email: "",
-      firstName: "",
-      lastName: ""
-    };
-    const res2 = await axios.post("/api/user", newUser);
-    this.props.history.push(`/user/${res2.data._id}`);
-  }
-  }
+    
+    if(res.data){
+        alert("This username is taken, please try again");
+        return;
+    } else {
+        const newUser = {
+            _id: uuid(),
+            username,
+            password,
+            email: "",
+            firstName: "",
+            lastName: ""
+        };
+        const res2 = await axios.post("/api/user", newUser);
+        this.props.history.push(`/user/${res2.data._id}`);
+    }
+}
+
 
   render() {
 

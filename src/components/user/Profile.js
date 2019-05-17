@@ -66,11 +66,11 @@ onSubmit = async e => {
 
     return (
         <div>
-
+          
         <nav className="navbar navbar-dark bg-primary fixed-top">
         <span className="navbar-brand mb-0 h1">Profile</span>
         <button className="btn" form="profileForm" href="profile.html">
-        <i className="fas fa-check"/></button>
+        <i className="color-white fas fa-check"/></button>
         </nav>
 
         <div className="container">

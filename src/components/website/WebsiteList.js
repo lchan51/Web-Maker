@@ -35,7 +35,6 @@ export default class WebsiteList extends Component {
             <i className="fas fa-plus"/></Link>
         </nav>
 
-        
           <ul className="list-group">
             {this.state.websites.map(
               (website) => (

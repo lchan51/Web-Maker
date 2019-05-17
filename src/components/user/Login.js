@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"
 
-
-
 export default class Login extends Component {
   state = {
     username: "",
@@ -25,7 +23,6 @@ export default class Login extends Component {
     };
     this.login(user);
   }
-
   login = async user => {
     const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)
     if (res.data) {

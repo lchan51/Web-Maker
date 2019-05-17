@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default class PageEdit extends Component {
   state = {
@@ -16,29 +17,23 @@ export default class PageEdit extends Component {
       wid: this.props.match.params.wid,
       pid: this.props.match.params.pid
     })
-  const page = this.getPage();
-  this.setState({
-    name: page.name,
-    title: page.title
-  })
+      this.getPage();
   }
-  
-  getPage = ()=> {
-    for (let page of this.props.pages) {
-      if(page._id === this.state.pid){
-        return page;
+    getPage = async ()=> {
+    const res = await axios.get(`/api/page/${this.state.pid}`);
+    this.setState({  
+      name: res.data.name,
+      title: res.data.title
+      })
       }
-    }
-      return null
-  }
-  
+     
     onChange= e => {
       this.setState({
         [e.target.name]: e.target.value
       })
     }
   
-    onSubmit = e => {
+    onSubmit = async e => {
       e.preventDefault();
       const newPage = {
         _id: this.state.pid,
@@ -46,30 +41,30 @@ export default class PageEdit extends Component {
         websiteId: this.state.wid,
         title: this.state.title
       }
-        this.props.editPage (newPage);
+        await axios.put ("/api/page", newPage);
         this.props.history.push(`/user/${this.state.uid}/website/${this.state.wid}/page`)
     }
   
-    onDelete =()=> {
-      this.props.deletePage(this.state.pid);
+    onDelete = async ()=> {
+      await axios.delete( `/api/page/${this.state.pid}`);
       this.props.history.push (`/user/${this.state.uid}/website/${this.state.wid}/page`)
     }
-  
+
+
   render() {
     const {uid,wid,name,title}=this.state
-
+    
     return (
       <div>
- 
       <nav className="navbar navbar-light bg-light fixed-top"></nav>
       <Link to={`/user/ ${uid}/website/${wid}/page`}><i className="fas fa-chevron-left" /></Link>
       <span className="navbar-brand mb-0 h1">Edit Page</span>
       <button className="btn float-right pt-2" form="editPageForm"> 
-      <i className="fas fa-check pt-1"/>
+      <i className="color-black fas fa-check pt-1"/>
        </button>
 
       <div className="form-group">
-      <form id="editPageForm"> onSubmit={this.onSubmit}>
+      <form id="editPageForm" onSubmit={this.onSubmit}>
       <label htmlFor="name">Name</label>
       <input className="form-control" 
       type="text"
@@ -88,6 +83,7 @@ export default class PageEdit extends Component {
       <Link to={`/user/${uid}/website/${wid}/page/list`} className="btn btn-warning btn-block">
       Cancel
       </Link>
+
       <button
           type="button"
           onClick={this.onDelete}
@@ -97,7 +93,6 @@ export default class PageEdit extends Component {
         </form>
         </div>
 
-
         <footer className="navbar navbar-light bg-light fixed-bottom">
           <div className="full-width">
             <Link className="float-right" to={`user/${uid}`}>
@@ -106,6 +101,9 @@ export default class PageEdit extends Component {
           </div>
         </footer>
       </div>
-    );
+    )
   }
 }
+
+
+

@@ -30,9 +30,9 @@ module.exports = function (app) {
         res.json(websites);
         })
 
-        app.put("/api/website", (res, req)=> {
+        app.put("/api/website", (req, res)=> {
         const newWeb = req.body;
-        websites =websites.map(
+        websites = websites.map(
             (website)=> {
         if(website._id === newWeb._id){
         website = newWeb    
