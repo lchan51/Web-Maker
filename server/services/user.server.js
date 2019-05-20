@@ -30,7 +30,6 @@ module.exports = function (app)
           })
             
           
-           
       app.get("/api/user/:uid", (req, res) => {
             const uid = req.params["uid"];
             let user;

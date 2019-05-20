@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
+import axios from "axios"
+
 export default class WidgetList extends Component {
     state= {
         uid: "",
         wid: "",
         pid: "",
-        widgets: []
+        widgets: [],
     }
+    
 
     async componentDidMount() {
         await this.setState({
@@ -17,17 +20,13 @@ export default class WidgetList extends Component {
         this.filterWidgets(this.state.pid);
     }
 
-    filterWidgets = (pid) => {
-        const widgets = this.props.widgets.filter(
-            (widget) => (
-                widget.pageId === pid
-            )
-        )
-
+    filterWidgets = async (pid) => {
+        const res= await axios.get(`/api/page/${pid}/widget`)
         this.setState({
-            widgets
+            widgets: res.data
         })
     }
+
 
 render() {
   const {uid, wid, pid, widgets} = this.state
@@ -47,6 +46,7 @@ render() {
                 widgets.map(
                 (widget) => {
                 switch(widget.widgetType){
+
                 case "HEADING":
                 return (
                     <div key={widget._id}>
@@ -72,17 +72,12 @@ render() {
                     <div key={widget._id}>
                     <div className="float-right">
                     <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
-                    <i className="fas fa-cog" /></Link>
+                    <i className="fas fa-cog"/></Link>
                     <span><i className="fas fa-bars" /></span>
                     </div>
-                    
+
                     <div>
-                    <img
-                    className="img-fluid"
-                    src={widget.url}
-                    alt=""
-                    width={widget.width}
-                    />
+                    <img className="img-fluid" src={widget.url} alt="" width={widget.width}/>
                     </div>
                     </div>
                     )
@@ -109,18 +104,18 @@ render() {
                             
                 default:
                     return;
-                          }
+                }
                       }
                   )
               }
           
           </div>
-          <footer className="navbar navbar-light fixed-bottom bg-light">
+        <nav className="navbar navbar-primary bg-primary fixed-bottom">
         <div className="full-width">
-        <Link className="color-black float-right" to={`/user/${uid}`}><i className="fas fa-user" />
+        <Link className="color-black float-right" to={`/user/${uid}`}><i className="fas fa-user color-white" />
         </Link>
             </div>
-            </footer>
+            </nav>
             </div>
   );
 }

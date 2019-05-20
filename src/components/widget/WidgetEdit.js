@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import WidgetHeading from "./WidgetHeading";
 import WidgetImage from "./WidgetImage";
 import WidgetYouTube from "./WidgetYouTube" 
+import axios from "axios"
 
 
 export default class WidgetEdit extends Component {
-    state={
+    
+  state={
     name: "",
     text: "",
     size: "",
@@ -27,22 +29,17 @@ componentDidMount(){
     pid: this.props.match.params.pid
   })
 }
-  getWidget = (wgid) => {
-    let currentWidget;
-    for(let widget of this.props.widgets){
-      if(widget._id === wgid){
-        currentWidget=widget;
-        break;
-      }
-    }
-    this.setState({
-    name: currentWidget.name? currentWidget.name :"",
-    text: currentWidget.text,
-    size: currentWidget.size,
-    widgetType: currentWidget.widgetType,
-    width: currentWidget.width,
-    url: currentWidget.url
-    });
+  getWidget = async (wgid) => {
+    const res = await axios.get (`/api/widget/${wgid}`);
+    const currentWidget = res.data;
+    //this.setState({
+    //name: currentWidget.name? currentWidget.name : "",
+    //text: currentWidget.text,
+    //size: currentWidget.size,
+    //widgetType: currentWidget.widgetType,
+    //width: currentWidget.width,
+    //url: currentWidget.url
+    //});
   }
 
   onChange = e => {
@@ -55,6 +52,7 @@ componentDidMount(){
     const {name, size, text, url, width, widgetType, uid, wid, pid} = this.state;
     const newWidget = {
       _id: this.props.match.params.wgid,
+      pageId: pid,
       name,
       size: parseInt(size),
       text, 
@@ -62,13 +60,13 @@ componentDidMount(){
       width, 
       widgetType
     }
-    this.props.editWidget(newWidget);
+    axios.put ("/api/widget", newWidget);
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
   }
 
   onDelete = () => {
     const {uid, wid, pid} = this.state;
-    this.props.deleteWidget(this.props.match.params.wgid);
+    axios.delete(`/api/widget/${this.props.match.params.wgid}`)
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
   }
 
@@ -110,7 +108,7 @@ render() {
 
       } else {
       return (
-      <widgetYouTube
+      <widgetYoutube
         name={name}
         text={text}
         size={size}

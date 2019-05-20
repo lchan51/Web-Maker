@@ -15,87 +15,7 @@ import WidgetChooser from "./components/widget/WidgetChooser";
 import WidgetEdit from "./components/widget/WidgetEdit"
 
 class App extends Component {
-  state = {
-
-
-    widgets: [
-      {
-        _id: "123",
-        widgetType: "HEADING",
-        pageId: "321",
-        size: 2,
-        text: "GIZMODO"
-      },
-      {
-        _id: "234",
-        widgetType: "HEADING",
-        pageId: "321",
-        size: 4,
-        text: "Lorem ipsum"
-      },
-      {
-        _id: "345",
-        widgetType: "IMAGE",
-        pageId: "321",
-        width: "100%",
-        url:
-          "https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"
-      },
-      {
-        _id: "567",
-        widgetType: "HEADING",
-        pageId: "321",
-        size: 4,
-        text: "Lorem ipsum"
-      },
-      {
-        _id: "678",
-        widgetType: "YOUTUBE",
-        pageId: "321",
-        width: "100%",
-        url: "https://www.youtube.com/embed/AM2Ivdi9c4E"
-      }
-    ]
-  }
-
  
-  
-    
-        editWidget = newWidget => {
-          const newWidgets = this.state.widgets.map(
-          (widget) => {
-            if (widget._id ===newWidget.id) {
-              widget = newWidget
-            }
-            return widget;
-          }
-          )
-          this.setState({
-            widgets: newWidgets 
-          })
-        }
-        
-        deleteWidget = (wgid) => {
-        const newWidgets = this.state.widgets.filter(
-          (widget) => (
-            widget._id !== wgid
-          )
-        )
-        this.setState({
-          widgets: newWidgets
-            })
-        }
-
-        addWidget = newWidget => {
-          const newWidgets = this.state.widgets;
-          newWidgets.push(newWidget);
-          this.setState({
-            widgets: newWidgets
-          });
-        }
-
-    
-          
 
   render() {
     
@@ -112,20 +32,9 @@ class App extends Component {
             <Route exact path="/user/:uid/website/:wid/page" component={PageList}/>
             <Route exact path="/user/:uid/website/:wid/page/new" component={PageNew}/>
             <Route exact path="/user/:uid/website/:wid/page/:pid" component={PageEdit}/>
-            <Route
-              exact
-              path="/user/:uid/website/:wid/page/:pid/widget"
-              render={props => (<WidgetList {...props} widgets={this.state.widgets} />)}
-            />
-            <Route
-              exact path="/user/:uid/website/:wid/page/:pid/widget/new"
-            render={props => (<WidgetChooser {...props} widgets={this.state.widgets} addWidget={this.addWidget}/>)}
-            />
-            <Route
-            exact path="/user/:uid/website/:wid/page/:pid/widget/:wgid"
-            render={props => (<WidgetEdit {...props} widgets={this.state.widgets} editWidget={this.editWidget} deleteWidget={this.deleteWidget}/>)}
-            />
-            
+            <Route exact path="/user/:uid/website/:wid/page/:pid/widget" component={WidgetList}/>
+            <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new" component = {WidgetChooser}/>
+            <Route exact path="/user/:uid/website/:wid/page/:pid/widget/:wgid" component = {WidgetEdit}/>    
         </Switch>
       </Router>
     );

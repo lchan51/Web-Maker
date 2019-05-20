@@ -32,7 +32,7 @@ async register(username, password, password2) {
     const res = await axios.get(`/api/user?username=${username}`);
     
     if(res.data){
-        alert("This username is taken, please try again");
+        alert("Username is taken, please try another");
         return;
     } else {
         const newUser = {

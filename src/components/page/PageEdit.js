@@ -56,12 +56,13 @@ export default class PageEdit extends Component {
     
     return (
       <div>
-      <nav className="navbar navbar-light bg-light fixed-top"></nav>
-      <Link to={`/user/ ${uid}/website/${wid}/page`}><i className="fas fa-chevron-left" /></Link>
+      <nav className="navbar navbar-light bg-light fixed-top">
+      <Link to={`/user/ ${uid}/website/${wid}/page`} color-black><i className="color-black fas fa-chevron-left" /></Link>
       <span className="navbar-brand mb-0 h1">Edit Page</span>
-      <button className="btn float-right pt-2" form="editPageForm"> 
-      <i className="color-black fas fa-check pt-1"/>
-       </button>
+      <Link className="btn float-right pt-2" form="editPageForm"> 
+      <i className="color-black fas fa-check"/></Link>
+      </nav>
+      
 
       <div className="form-group">
       <form id="editPageForm" onSubmit={this.onSubmit}>
@@ -80,9 +81,9 @@ export default class PageEdit extends Component {
       onChange={this.onChange} value={title}/>
       </div>
     
-      <Link to={`/user/${uid}/website/${wid}/page/list`} className="btn btn-warning btn-block">
+      <button to={`/user/${uid}/website/${wid}/page/list`} className="btn btn-warning btn-block">
       Cancel
-      </Link>
+      </button>
 
       <button
           type="button"

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
+import axios from "axios"
 
 export default class WidgetHeading extends Component {
 
@@ -31,26 +32,26 @@ export default class WidgetHeading extends Component {
                 </nav>
             
                 <div className="container">
-                        <form id="headingForm" onSubmit={this.onSubmit}></form>
+                <form id="headingForm" onSubmit={this.onSubmit}></form>
                           <div className="form-group">
                           <label htmlFor="Name">Name</label>
-                          <input id="name" name="name" type="text" className="form-control" 
-                          onChange = {this.onChange}>
-                          value={name}</input>
+                          <input id="name" name="name" type="text" className="form-control"
+                          onChange = {this.onChange}
+                          value={name}/>
                           </div>
                         
                           <div className="form-group">
                           <label htmlFor="Text">Text</label>
                           <input id="text" name="text" type="text" className="form-control"
                           onChange = {this.onChange}
-                          value={text}></input>
+                          value={text}/>
                           </div>
             
                           <div className="form-group">
                           <label htmlFor="Size">Size</label>
                           <input id="size" name="size" type="number" className="form-control" placeholder="3"
                           onChange = {this.onChange}
-                          value={size}></input>
+                          value={size}/>
                           </div> 
 
                           <button className="btn btn-danger btn-block" onClick={this.onDelete}>Delete</button>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import uuid from "uuid"
+import axios from "axios"
 
 export default class WidgetChooser extends Component {
 
@@ -17,7 +18,7 @@ export default class WidgetChooser extends Component {
     width: "",
     url: ""
   }
-    this.props.addWidget(newWidget);
+    axios.post ("/api/widget", newWidget);
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget/${newWidget._id}`)
 }
 
@@ -27,17 +28,20 @@ export default class WidgetChooser extends Component {
 
     return (
       <div>
+
         <nav className="navbar navbar-light bg-light fixed top">
-          <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
-            <i className="float-left fas fa-chevron-left" />
+          <Link className="color-black" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
+            <i className="fas fa-chevron-left"/>
           </Link>
-          <span className="navbar-brand mb-01 h1>">Choose Widget</span>
+          <span className="navbar-brand padding-left">Choose Widget</span>
+          <div></div>
         </nav>
 
+      
         <div className="container">
           <ul className="list-group">
             <li className="list-group-item">
-            <button onClick={this.createWidget.bind(this, "HEADING")} to={`/user/${uid}/website/${wid}/page/${pid}/widget/`}> Header</button>
+            <Link onClick={this.createWidget.bind(this, "HEADING")} to={`/user/${uid}/website/${wid}/page/${pid}/widget/`}> Header</Link>
             </li>
 
             <li className="list-group-item">
@@ -78,10 +82,10 @@ export default class WidgetChooser extends Component {
           </ul>
         </div>
 
-        <nav className="navbar navbar-light bg-light fixed-bottom">
+        <nav className="navbar navbar-primary bg-primary fixed-bottom">
           <div className="full-width">
             <Link className="float-right" to={`/user/${uid}`}>
-              <i className="fas fa-user text-primary" />
+              <i className="fas fa-user color-white" />
             </Link>
           </div>
         </nav>
