@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
-import axios from "axios"
+
 
 export default class WidgetImage extends Component {
 
@@ -16,7 +16,7 @@ export default class WidgetImage extends Component {
       this.props.onDelete(e)
     )
   render() {
-    const {uid, wid, pid, widgets, name, width, url} = this.props
+    const {uid, wid, pid, name, width, url} = this.props
     
     return (
       <div>
@@ -52,14 +52,14 @@ export default class WidgetImage extends Component {
                                             
                 <div className="form-group">
                 <label htmlFor="Upload">Upload</label>
-                <input placeholder="Choose File" value="No file chosen" id="text" name="Text" type="file" className="form-control"
+                <input placeholder="Choose File" value="" id="text" name="Text" type="file" className="form-control"
                 onChange={this.onChange}/>
                 </div>
                 </form>
                 
                 <div>
-                <button className="btn btn-danger btn-block" type="button">
-                onClick={this.onDelete} Delete</button>
+                <button className="btn btn-danger btn-block" type="button"
+                onClick={this.onDelete}> Delete </button>
                 </div>
                                                    
               <footer className="navbar navbar-light fixed-bottom bg-light">

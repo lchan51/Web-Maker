@@ -131,9 +131,9 @@ export default class WebsiteEdit extends Component {
                 Cancel
               </Link>                
               <button
-                type="button"
+                type="button float-left"
                 onClick={this.deleteWeb}
-                className="btn btn-lg btn-danger float-right">
+                className="btn btn-lg btn-danger float-left">
                 Delete
               </button>
             </form>

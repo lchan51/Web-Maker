@@ -44,13 +44,14 @@ export default class PageList extends Component {
         <div className="container-left">
         <ul className="list-group">
         
-            {//!! Cog should go to Page Edit !!
+            {
               this.state.pages.map(
               (page)=> (
                 <li key={page._id} className="list-group-item">
 
               <Link to={`/user/${uid}/website/${wid}/page/${page._id}/widget`}>{page.name}</Link>
-                <Link className="btn float-right" to={`/user/${uid}/website/${wid}/page/edit`}><i className="fas fa-cog" /></Link>
+                <Link className="btn float-right" to={`/user/${uid}/website/${wid}/page/${page._id}`}>
+                  <i className="fas fa-cog" /></Link>
                  </li>
                 )                                  
                 )

@@ -1,51 +1,59 @@
-module.exports = function (app) {
+module.exports = function(app) {
     let pages = [
-    { _id: "321", name: "Post 1", websiteId: "456", title: "Lorem" },
-    { _id: "432", name: "Post 2", websiteId: "456", title: "Lorem" },
-    { _id: "543", name: "Post 3", websiteId: "456", title: "Lorem" }
-  ];
+        { _id: "321", name: "Post 1", websiteId: "456", title: "Lorem" },
+        { _id: "432", name: "Post 2", websiteId: "456", title: "Lorem" },
+        { _id: "543", name: "Post 3", websiteId: "456", title: "Lorem" }
+    ];
 
-        app.get("/api/website/:wid/page", (req, res)=> {
-        const wid = req.params ["wid"];
+  
+    app.get("/api/website/:wid/page", (req, res) => {
+        const wid = req.params["wid"];
         let result = []
         result = pages.filter(
-        (page)=> (page.websiteId === wid)
+            (page) => (page.websiteId === wid)
         );
-        res.json(result)
-        })
+        
+        res.json(result);
+    })
 
-        app.post("/api/page", (req, res)=> {
+   
+    app.post("/api/page", (req, res) => {
         const newPage = req.body;
         pages.push(newPage);
         res.json(newPage);
-         })
+    })
 
-        app.get("/api/page/:pid", (req, res) => {
+   
+    app.get("/api/page/:pid", (req, res) => {
         const pid = req.params["pid"];
-        const page = pages.find (
-            (page) => (page._id ===pid)
+        const page = pages.find(
+            (page) => (page._id === pid)
         )
-        res.json(page)
-        })
+        res.json(page);
+    })
 
-        app.delete("/api/page/:pid", (req, res) => {
-        const pid = req.params ["pid"];
-        const page = pages.find (
-            (page) => (page._id ===pid)
+ 
+    app.delete("/api/page/:pid", (req, res) => {
+        const pid = req.params["pid"];
+        const page = pages.find(
+            (page) => (page._id === pid)
         )
         const index = pages.indexOf(page);
         pages.splice(index, 1);
-        res.json(page)
+        res.json(page);
     })
-        app.put("/api/page", (req, res) => {
+
+    
+    app.put("/api/page", (req, res) => {
         const newPage = req.body;
         pages = pages.map(
-            (page) =>{
-        if (page._id === newPage._id) {
-            page=newPage
-        }
-        return page;
-    })
+            (page) => {
+        if(page._id === newPage._id) {
+        page = newPage
+                }
+                return page;
+            }
+        )
         res.json(newPage);
-      })
-    }
+    })
+};

@@ -17,14 +17,13 @@ export default class Register extends Component {
       [e.target.name]: e.target.value
     });
   };
-
+  
   onSubmit = e => {
     e.preventDefault();
     const {username, password, password2} = this.state;
     this.register(username, password, password2);
-}
-
-async register(username, password, password2) {
+  }
+    async register (username, password, password2) {
     if(password !== password2) {
         alert("The passwords do not match");
         return;
@@ -96,10 +95,10 @@ async register(username, password, password2) {
               onChange={this.onChange}
             />
           </div>
+          <button className="btn btn-primary btn-block">Register </button>
+          <Link className="btn btn-danger btn-block" to="/login/"> Cancel </Link>
         </form>
 
-        <button className="btn btn-primary btn-block">Register </button>
-        <Link className="btn btn-danger btn-block" to="/login/"> Cancel </Link>
       </div>
     );
   }

@@ -69,7 +69,8 @@ let widgets = [
     app.get ("/api/widget/:wgid", (req, res) => {
       const wgid = req.params ["wgid"];
       const widget = widgets.find (
-        (widget) => widget._id ===wgid)
+        (widget) => (widget._id ===wgid)
+      )
         res.json(widget)
         })
 

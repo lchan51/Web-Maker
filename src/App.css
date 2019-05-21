@@ -49,9 +49,9 @@ label {
 
 /* Widgets */
 
-.icon-right {
+.i {
   color: black;
-  position: absolute;
+  position: float-right;
   right: 15px;
   z-index: 1;
   background: white;
@@ -61,7 +61,6 @@ label {
 
 .fa-check{
   color: white
-
 }
 
 .fa-plus{
@@ -76,5 +75,5 @@ label {
 }
 
 .fa-cog{
-  color: #007bff
+  color: #007bff;
 }

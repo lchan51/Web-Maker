@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
-import axios from "axios"
 
 export default class WidgetYouTube extends Component {
 
@@ -25,7 +24,7 @@ export default class WidgetYouTube extends Component {
         <nav className="navbar navbar-light bg-light fixed top">
         <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-chevron-left"></i></Link>
         <span className="navbar-brand mb-01 h1>">Edit Widgets</span>
-        <button className="float-right pt-2" form="youtubeForm" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-check pt-1"></i></button>
+        <Link className="float-right pt-2" form="youtubeForm" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-check pt-1"></i></Link>
         </nav>
                 <div className="container">
                 <form id="youtubeForm" onSubmit={this.onSubmit}>
@@ -49,9 +48,10 @@ export default class WidgetYouTube extends Component {
                         <input id="width" name="width" type="number" onChange={this.onChange} value={width} className="form-control"/>
                         </div> 
                                                     
-    
-                    <button className="btn btn-danger btn-block" type="button" OnClick={this.onDelete}> Delete </button>
-                                                           
+                        <div>
+                <button className="btn btn-danger btn-block" type="button"
+                onClick={this.onDelete}> Delete </button>
+                </div>           
                         
         <footer className="navbar navbar-light fixed-bottom bg-light">
         <div className="full-width">

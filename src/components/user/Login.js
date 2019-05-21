@@ -22,6 +22,8 @@ export default class Login extends Component {
       password
     };
     this.login(user);
+
+    
   }
   login = async user => {
     const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)

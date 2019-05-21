@@ -103,7 +103,7 @@ render() {
                                 )
                             
                 default:
-                    return;
+                    return null;
                 }
                       }
                   )

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import WidgetHeading from "./WidgetHeading";
 import WidgetImage from "./WidgetImage";
 import WidgetYouTube from "./WidgetYouTube" 
@@ -32,14 +31,14 @@ componentDidMount(){
   getWidget = async (wgid) => {
     const res = await axios.get (`/api/widget/${wgid}`);
     const currentWidget = res.data;
-    //this.setState({
-    //name: currentWidget.name? currentWidget.name : "",
-    //text: currentWidget.text,
-    //size: currentWidget.size,
-    //widgetType: currentWidget.widgetType,
-    //width: currentWidget.width,
-    //url: currentWidget.url
-    //});
+    this.setState({
+    name: currentWidget.name? currentWidget.name : "",
+    text: currentWidget.text,
+    size: currentWidget.size,
+    widgetType: currentWidget.widgetType,
+    width: currentWidget.width,
+    url: currentWidget.url
+    });
   }
 
   onChange = e => {
@@ -108,7 +107,7 @@ render() {
 
       } else {
       return (
-      <widgetYoutube
+      <WidgetYouTube
         name={name}
         text={text}
         size={size}

@@ -22,7 +22,7 @@ async componentDidMount() {
   }
 
 showUser = user => {
-    const { username, password, email, firstName, lastName, oldUsername } = user;
+    const { username, password, email, firstName, lastName} = user;
     this.setState({
       username,
       password,

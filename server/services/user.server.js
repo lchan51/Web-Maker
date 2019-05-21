@@ -15,7 +15,7 @@ module.exports = function (app)
             return user.username === username && user.password === password
           })
         }
-          if(username) {
+        else if(username) {
           user=users.find((user)=>{
           return user.username ===username;
           })
