@@ -97,29 +97,25 @@ export default class PageEdit extends Component {
                             />
                         </div>
 
-                        <Link to={`/user/${uid}/website/${wid}/page`} className="btn btn-lg btn-warning">
+                        <Link to={`/user/${uid}/website/${wid}/page`} className="btn btn-lg btn-warning float-right">
                             Cancel
                         </Link>
                         <button
                             type="button"
                             onClick={this.onDelete}
-                            className="btn btn-lg btn-danger float-right"
+                            className="btn btn-lg btn-danger float-left"
                         >
                             Delete
                         </button>
                     </form>
                 </div>
 
-                <footer className="navbar navbar-light fixed-bottom bg-light">
-                    <div className="full-width">
-                        <Link
-                            className="color-black float-right"
-                            to={`/user/${uid}`}
-                        >
-                            <i className="fas fa-user" />
-                        </Link>
-                    </div>
-                </footer>
+                <nav className="navbar navbar-dark bg-primary fixed-bottom"> 
+                <div className="full-width">
+                <Link className="color-white float-right" to={`/user/${uid}`}>
+                <i className="fas fa-user"/></Link>
+                </div>
+                </nav>
             </div>
         );
     }

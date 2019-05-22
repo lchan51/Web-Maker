@@ -78,12 +78,13 @@ export default class PageNew extends Component {
           </form>
         
 
-        <footer className="navbar navbar-light bg-light fixed-bottom">
+          <nav className="navbar navbar-dark bg-primary fixed-bottom">
           <div className="full-width">
-          <Link className="float-right" to={`user/{uid}`}> <i className="fas fa-user"></i>
+            <Link className="float-right" to={`/user/${uid}`}>
+              <i className="fas fa-user" />
             </Link>
-          </div>
-        </footer>
+            </div>
+            </nav>
         </div>
         </div>
   )

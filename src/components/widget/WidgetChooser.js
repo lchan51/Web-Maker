@@ -6,7 +6,7 @@ import axios from "axios"
 export default class WidgetChooser extends Component {
 
 
-  createWidget = (type) => { 
+  createWidget = type => { 
   const {uid, wid, pid } = this.props.match.params
   const newWidget = {
     _id: uuid (),
@@ -29,11 +29,11 @@ export default class WidgetChooser extends Component {
     return (
       <div>
 
-        <nav className="navbar navbar-light bg-light fixed top">
+        <nav className="navbar navbar-light fixed-top bg-light full width">
           <Link className="color-black" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
             <i className="fas fa-chevron-left"/>
           </Link>
-          <span className="navbar-brand padding-left">Choose Widget</span>
+          <span className="navbar-brand">Choose Widget</span>
           <div></div>
         </nav>
 
@@ -41,7 +41,7 @@ export default class WidgetChooser extends Component {
         <div className="container">
           <ul className="list-group">
             <li className="list-group-item">
-            <Link onClick={this.createWidget.bind(this, "HEADING")} to={`/user/${uid}/website/${wid}/page/${pid}/widget/`}> Header</Link>
+            <Link onClick={this.createWidget.bind(this, "HEADING")}>Heading</Link>
             </li>
 
             <li className="list-group-item">

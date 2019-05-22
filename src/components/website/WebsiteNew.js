@@ -61,32 +61,32 @@ export default class WebsiteNew extends Component {
             <Link to={`/user/${this.props.match.params.uid}/website`}>
               <i className="fas fa-chevron-left" />
             </Link>
-            <span> <strong>Websites</strong></span>
+            <span> Websites</span>
             <Link className="float-right" to={`/user/${uid}/website`}>
               <i className="fas fa-plus pt-2" />
             </Link>
           </div>
 
-          <div className="col-lg-8 d-lg-block float-right">
+          <div className="col-lg-8 d-lg-block float-right mt-3">
             <Link to={`/user/${uid}/website`}>
               <i className="fas fa-chevron-left" />
             </Link>
             <button form="newWebForm" className="btn float-right">
               <i className="fas fa-check pt-1"/>
             </button>
-            <span><strong>New Website</strong></span>
+            <span>New Website</span>
           </div>
         </nav>
         
             <div className="row">
-            <div className="col-lg-4 d-none d-lg-block ">
+            <div className="col-lg-4 d-none d-lg-block mt-3">
             <ul className="list-group">
             {this.state.websites.map(
             (website) => (
             <li key={website._id} className="list-group-item">
             <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
             <Link to={`/user/${uid}/website/${website._id}`} className="absolute-left">
-            <i className="fas fa-cog"></i>
+            <i className="fas fa-cog float-right"></i>
             </Link>
             </li>
                   )

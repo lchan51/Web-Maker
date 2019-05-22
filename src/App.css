@@ -2,78 +2,68 @@ body {
   padding-top: 75px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px
+ 
 }
 
-a,
-a:hover {
-  margin-right: 30px;
-  text-decoration: none;
-}
-h1 {
-  text-align: left;
-  margin-left: 20px;
-  margin-bottom: 20px;
+.fa-check{
+  color: white;
+  margin-right: 5px
 }
 
-nav a,
-nav span,
-nav button i {
-  color: White;
+.fa-plus{
+  color: white;
+  margin-right: 20px
 }
+
+.fa-chevron-left{
+  color: white;
+  margin-right: 15px;
+  margin-left: 15px
+}
+
+.d-lg-block {
+  color: white
+}
+
+nav.navbar-light i {
+  color:black;
+}
+
+.fa-cog{
+  color: #007bff;
+  margin-right: 10px
+}
+
+.fa-user{
+  color: white;
+  position: float-right;
+  margin-right: 20px
+}
+
+
 navbar 
 nav.navbar-dark a {
   color: white;
-}
-nav.navbar-light i {
-  color:black;
 }
 
 label {
   font-weight: 700;
 }
 
-.navbar-brand {
-  margin-left: 30px;
-  padding-left: 40px;
+
+
+.full-width {
+  width: 100%;
+}
+
+span {
+  font-weight: 650;
+  font-size: large;
 }
 
 .list-group-item {
   margin-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
-}
-
-.full-width {
-  width: 100%;
-}
-
-/* Widgets */
-
-.i {
-  color: black;
-  position: float-right;
-  right: 15px;
-  z-index: 1;
-  background: white;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-.fa-check{
-  color: white
-}
-
-.fa-plus{
-  color: white
-}
-
-.footer {
-  padding-bottom: 100px;
-}
-.btn {
-  margin-right: 20px;
-}
-
-.fa-cog{
-  color: #007bff;
 }

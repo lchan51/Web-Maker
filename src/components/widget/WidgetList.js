@@ -33,7 +33,7 @@ render() {
   return (
 
       <div>
-            <nav className="navbar navbar-light fixed-top bg-light">
+            <nav className="navbar navbar-light fixed-top bg-light full width">
             <Link className="color-black" to={`/user/${uid}/website/${wid}/page`}>
             <i className="fas fa-chevron-left" /></Link>
             <span className="navbar-brand">Widgets</span>
@@ -64,22 +64,23 @@ render() {
                     {widget.size === 5 && <h5>{widget.text}</h5>}
                     {widget.size === 6 && <h6>{widget.text}</h6>}
                     </div>
-                    </div>
+                   </div>
+            
                     )
                                   
                     case "IMAGE":
                     return (
                     <div key={widget._id}>
-                    <div className="float-right">
+                    <div className= "float-right">
                     <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
                     <i className="fas fa-cog"/></Link>
                     <span><i className="fas fa-bars" /></span>
                     </div>
-
                     <div>
                     <img className="img-fluid" src={widget.url} alt="" width={widget.width}/>
                     </div>
                     </div>
+                   
                     )
                     
                         case "YOUTUBE":
@@ -100,7 +101,7 @@ render() {
                             allowFullScreen/>
                             </div>
                             </div>
-                                )
+                                )  
                             
                 default:
                     return null;
@@ -109,10 +110,10 @@ render() {
                   )
               }
           
-          </div>
-        <nav className="navbar navbar-primary bg-primary fixed-bottom">
+        </div>
+        <nav className="navbar navbar-primary bg-primary fixed-bottom float-right">
         <div className="full-width">
-        <Link className="color-black float-right" to={`/user/${uid}`}><i className="fas fa-user color-white" />
+        <Link to={`/user/${uid}`}><i className=" float-right fas fa-user"/>
         </Link>
             </div>
             </nav>

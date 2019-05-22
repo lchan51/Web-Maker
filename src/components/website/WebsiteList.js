@@ -49,12 +49,11 @@ export default class WebsiteList extends Component {
             )
             }
           </ul>
-      
 
-        <nav className="navbar navbar-dark bg-primary fixed-bottom">
+          <nav className="navbar navbar-dark bg-primary fixed-bottom">
           <div className="full-width">
           <Link className="float-right" to={`/user/${uid}`}>
-            <i className="fas fa-user" />
+            <i className="fas fa-user float-right" />
             </Link>
           </div>
         </nav>

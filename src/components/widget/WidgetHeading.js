@@ -21,7 +21,7 @@ export default class WidgetHeading extends Component {
 
     return (
       <div>
-         <nav className="navbar navbar-light bg-light fixed-top">
+         <nav className="navbar navbar-light fixed-top bg-light full width">
                 <Link to = "/WidgetList"><i className="fas fa-chevron-left"></i></Link>
                 <span className="navbar-brand mb-01 h1>">Edit Widgets</span>
                 <button className=" btn float-right pt-2" 
@@ -55,12 +55,12 @@ export default class WidgetHeading extends Component {
 
                           <button className="btn btn-danger btn-block" onClick={this.onDelete}>Delete</button>
                           
-                          <footer className="navbar navbar-light fixed-bottom bg-light">
+                          <nav className="navbar navbar-dark bg-primary fixed-bottom"> 
                           <div className="full-width">
-                          <Link className="color-black float-right" to={`/user/${uid}`}><i className="fas fa-user" />
-                          </Link>
+                          <Link className="color-white float-right" to={`/user/${uid}`}>
+                          <i className="fas fa-user"/></Link>
                           </div>
-                          </footer>
+                          </nav>
                           </div>
                           </div>
     )

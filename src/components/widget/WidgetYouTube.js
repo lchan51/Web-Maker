@@ -21,7 +21,7 @@ export default class WidgetYouTube extends Component {
     
     return (
       <div>
-        <nav className="navbar navbar-light bg-light fixed top">
+        <nav className="navbar navbar-light fixed-top bg-light full width">
         <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-chevron-left"></i></Link>
         <span className="navbar-brand mb-01 h1>">Edit Widgets</span>
         <Link className="float-right pt-2" form="youtubeForm" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-check pt-1"></i></Link>

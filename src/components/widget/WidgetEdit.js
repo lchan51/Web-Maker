@@ -120,7 +120,7 @@ render() {
         onChange={this.onChange}
         onSubmit={this.onSubmit}
         onDelete={this.onDelete}/>
-      )
-      }
-    }
+
+      )}
+}
   }

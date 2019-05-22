@@ -69,33 +69,35 @@ export default class WebsiteEdit extends Component {
 
     return (
       <div>
-        <nav className="navbar mb-0 h5 navbar-dark bg-primary fixed-top row">
-          <div className="col-lg-4 d-none d-lg-block">
-            <Link className="float-left" to= {`/user/${uid}/website`}>
-              <i className="fas fa-chevron-left"></i>
-            </Link>
-            <span className navbar-brand mb-0 h1> Websites </span>
-            <Link className="float-right" to={`/user/${uid}/website`}>
-              <i className= "fas fa-plus pt-2"></i>
-            </Link>
-          </div>
-          <div className="col-lg-8 d-lg-block float-right">
-            <Link to={`/user/${uid}/website`}><i className="fas fa-chevron-left"></i></Link>
-            <span className navbar-brand mb-0 h1> Edit Website </span>
-            <button className="float-right btn" form="editWebForm">
-              <i className="fas fa-check"></i>
-            </button>
-          </div>
-        </nav>
+      <nav className="navbar mb-0 h5 navbar-dark bg-primary fixed-top row">
+        <div className="col-lg-4 d-none d-lg-block">
+          <Link className="float-left" to= {`/user/${uid}/website`}>
+            <i className="fas fa-chevron-left"></i>
+          </Link>
+          <span className navbar-brand mb-0 h1>  Websites </span>
+          <Link className="float-right" to={`/user/${uid}/website`}>
+            <i className= "fas fa-plus pt-2"></i>
+          </Link>
+        </div>
+        <div className="col-lg-8 d-lg-block float-right mt-3">
+          <Link to={`/user/${uid}/website`}><i className="fas fa-chevron-left"></i></Link>
+          <span className navbar-brand mb-0 h1>  Edit Website </span>
+          <button className="float-right btn" form="editWebForm">
+            <i className="fas fa-check"></i>
+          </button>
+        </div>
+      </nav>
+           
+       
 
         <div className= "row">
-          <div className="col-lg-4 d-none d-lg-block mt-4">
+          <div className="col-lg-4 d-none d-lg-block mt-2">
             <ul className="list-group">
               {this.state.websites.map (
               (website) => (
               <li key={website._id} className = "list-group-item">
               <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
-              <Link to={`/user/${uid}/website/${website._id}`}className="float-left">
+              <Link to={`/user/${uid}/website/${website._id}`}className="float-right">
               <i className="fas fa-cog"></i></Link>
               </li>
               ))}
