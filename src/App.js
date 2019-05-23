@@ -15,7 +15,6 @@ import WidgetChooser from "./components/widget/WidgetChooser";
 import WidgetEdit from "./components/widget/WidgetEdit"
 
 class App extends Component {
- 
 
   render() {
     
