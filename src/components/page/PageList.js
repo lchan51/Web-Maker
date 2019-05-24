@@ -37,7 +37,7 @@ export default class PageList extends Component {
           <i className="color-black fas fa-chevron-left" />
           </Link>
           <span className="navbar-brand mb-0 h1">Pages </span>
-          <Link className="float-right" to={`/user/${uid}/website/${wid}/page/${page._id}`}>
+          <Link className="float-right" to={`/user/${uid}/website/${wid}/page/new`}>
           <i className="fas fa-plus"/></Link>
         </nav>
 
