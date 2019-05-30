@@ -1,54 +1,36 @@
 module.exports = function (app)
 {
-    let users = [
-        {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice@gmail.com"},
-        {_id: "234",username: "bob",password: "bob",firstName: "Bob",lastName: "Marley",email: "bob@whatever.com"},
-        {_id: "345",username: "charly",password: "charly",firstName: "Charly",lastName: "Garcia",email: "charly@ulem.com"},
-        {_id: "456",username: "shiyu",password: "shiyu",firstName: "Shiyu",lastName: "Wang",email: "swang@ulem.org"}
-      ]
-    app.get ("/api/user", (req, res)=> {
+  const UserModel = require("../models/user/user.model")
+
+    app.get ("/api/user", async (req, res)=> {
          const username = req.query["username"];
          const password = req.query["password"];
          let user;
          if(username && password){
-          user = users.find((user) => {
-            return user.username === username && user.password === password
-          })
-        }
-        else if(username) {
-          user=users.find((user)=>{
-          return user.username ===username;
-          })
-        }
-        res.json (user);
-        })
-
-      app.post("/api/user", (req, res)=> {
-            const user = req.body
-            users.push(user);
-            res.json(user);
-          })
+           user= await UserModel.findUserByCredentials(username, password);
+         } else if(username) {
+          user=await UserModel.findUserByUsername(username);
+         }
+         res.json (user);
+          });
+        
+      app.post("/api/user", async (req, res)=> {
+        const user = req.body;
+        const data = await UserModel.createUser(user);
+            res.json(data);
+          });
             
           
-      app.get("/api/user/:uid", (req, res) => {
+      app.get("/api/user/:uid", async (req, res) => {
             const uid = req.params["uid"];
             let user;
-            user =users.find((user) => {
-              return user._id === uid;
-            })
+            user = await UserModel.findUserById(uid);
             res.json(user);
-          })
-
-          app.put("/api/user", (req, res) => {
+          });
+          app.put("/api/user", async (req, res) => {
             const newUser = req.body;
-            users = users.map(
-            (user)=>{
-            if(user._id === newUser._id){
-            user = newUser
-            }
-              return user;
-                }
-            )
+            const date = await UserModel.updateUser(newUser);
             res.json(newUser);
-        })
-    };
+              })
+
+            }

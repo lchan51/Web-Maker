@@ -56,9 +56,8 @@ onSubmit = async e => {
       firstName,
       lastName
     };
-    const res = await axios.put("/api/user", newUser);
+    await axios.put("/api/user", newUser);
     alert ("Your update has been completed")
-    this.showUser(res.data)
 }
 
   render() {

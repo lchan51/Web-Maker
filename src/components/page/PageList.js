@@ -32,7 +32,7 @@ export default class PageList extends Component {
     return (
       
       <div>
-          <nav className="navbar navbar-light bg-light fixed-top">
+          <nav className="navbar navbar-light bg-lignpm sht fixed-top">
           <Link to={`/user/${this.state.uid}/website`}>
           <i className="color-black fas fa-chevron-left" />
           </Link>

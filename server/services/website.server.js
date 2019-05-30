@@ -1,45 +1,27 @@
-module.exports = function (app) {
-        let websites = [
-        {_id: "123", name: "Facebook", developerId: "456", description: "Lorem"},
-        {_id: "234", name: "Tweeter", developerId: "456", description: "Lorem" },
-        {_id: "456", name: "Gizmodo", developerId: "456", description: "Lorem" },
-        {_id: "890", name: "Go", developerId: "123", description: "Lorem" },
-        {_id: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem"},
-        {_id: "678", name: "Checkers", developerId: "123", description: "Lorem"},
-        {_id: "789", name: "Chess", developerId: "234", description: "Lorem" }
-      ]
+    module.exports = function (app) {
+    const websiteModel = require("../models/website/website.model")
 
-        app.get("/api/user/:uid/website", (req, res)=> {
+        app.get("/api/user/:uid/website",async (req, res)=> {
         const uid = req.params["uid"];
-        const result = websites.filter (
-        (website)=> (
-        website.developerId === uid))
-        res.json(result)
-        })
-    
-        app.post("/api/website", (req, res) => {
-        const newWeb = req.body;
-        websites.push(newWeb);
-        res.json()
-        })
-
-        app.delete("/api/website/:wid",(req, res)=> {
-        const wid = req.params["wid"];
-        const web = websites.find((website)=>(website._id===wid));
-        websites.splice(websites.indexOf(web), 1);
+        const websites = await websiteModel.findAllWebsitesForUser(uid)
         res.json(websites);
         })
-
-        app.put("/api/website", (req, res)=> {
+        
+        app.post("/api/website", async (req, res) => {
         const newWeb = req.body;
-        websites = websites.map(
-            (website)=> {
-        if(website._id === newWeb._id){
-        website = newWeb    
-        }
-        return website;
-        }
-        )
-        res.json(newWeb)
+        const data = await websiteModel.createWebsite(newWeb);
+        res.json(data);
+        })
+
+        app.delete("/api/website/:wid",async (req, res)=> {
+        const wid = req.params["wid"];
+        const data = await websiteModel.deleteWebsite(wid);
+        res.json(data);
+        })
+
+        app.put("/api/website", async (req, res)=> {
+        const newWeb = req.body;
+        const data = await websiteModel.updateWebsite(newWeb)
+        res.json(data);
         })
     }
