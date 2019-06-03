@@ -24,7 +24,7 @@ export default class WidgetYouTube extends Component {
         <nav className="navbar navbar-light fixed-top bg-light full width">
         <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-chevron-left"></i></Link>
         <span className="navbar-brand mb-01 h1>">Edit Widgets</span>
-        <Link className="float-right pt-2" form="youtubeForm" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-check pt-1"></i></Link>
+        <button className="btn float-right pt-2" form="youtubeForm" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}><i className="fas fa-check pt-1"></i></button>
         </nav>
                 <div className="container">
                 <form id="youtubeForm" onSubmit={this.onSubmit}>
@@ -40,14 +40,14 @@ export default class WidgetYouTube extends Component {
         
                         <div className="form-group">
                         <label htmlFor="URL">URL</label>
-                        <input id="url" name="url" type="text" onChange={this.onChange} Value={url} className="form-control"/>
+                        <input id="url" name="url" type="text" onChange={this.onChange} value={url} className="form-control"/>
                         </div>        
                                             
                         <div className="form-group">
                         <label htmlFor="Width">Width</label>
-                        <input id="width" name="width" type="number" onChange={this.onChange} value={width} className="form-control"/>
+                        <input id="width" name="width" type="text" className="form-control" placeholder="100%" onChange={this.onChange} value={width} className="form-control"/>
                         </div> 
-                                                    
+                                                      
                         <div>
                 <button className="btn btn-danger btn-block" type="button"
                 onClick={this.onDelete}> Delete </button>

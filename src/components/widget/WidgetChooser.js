@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import uuid from "uuid"
 import axios from "axios"
 
 export default class WidgetChooser extends Component {
 
 
-  createWidget = type => { 
+  createWidget = async type => { 
   const {uid, wid, pid } = this.props.match.params
   const newWidget = {
-    _id: uuid (),
     name: "",
     widgetType: type,
     pageId: pid,
@@ -18,8 +16,8 @@ export default class WidgetChooser extends Component {
     width: "",
     url: ""
   }
-    axios.post ("/api/widget", newWidget);
-    this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget/${newWidget._id}`)
+    const res = await axios.post ("/api/widget", newWidget);
+    this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget/${res.data._id}`)
 }
 
 

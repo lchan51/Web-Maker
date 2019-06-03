@@ -4,7 +4,6 @@ import WidgetImage from "./WidgetImage";
 import WidgetYouTube from "./WidgetYouTube" 
 import axios from "axios"
 
-
 export default class WidgetEdit extends Component {
     
   state={
@@ -16,8 +15,7 @@ export default class WidgetEdit extends Component {
     url: "",
     uid: "",
     wid: "",
-    pid: "",
-    widgets: []
+    pid: ""
   }
 
 componentDidMount(){
@@ -32,7 +30,7 @@ componentDidMount(){
     const res = await axios.get (`/api/widget/${wgid}`);
     const currentWidget = res.data;
     this.setState({
-    name: currentWidget.name? currentWidget.name : "",
+    name: currentWidget.name? currentWidget.name: "",
     text: currentWidget.text,
     size: currentWidget.size,
     widgetType: currentWidget.widgetType,
@@ -59,6 +57,12 @@ componentDidMount(){
       width, 
       widgetType
     }
+    if (widgetType === "YOUTUBE"){
+      const splited = newWidget.url.split("/")
+      const length = splited.length;
+      const videoId = splited[length-1];
+      newWidget.url = "https://www.youtube.com/embed/" + videoId;
+    }
     axios.put ("/api/widget", newWidget);
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
   }
@@ -79,9 +83,6 @@ render() {
           name={name}
           text={text}
           size={size}
-          width={width}
-          widgetType={widgetType}
-          url={url}
           uid={uid} 
           pid={pid} 
           wid={wid}
@@ -93,10 +94,7 @@ render() {
         return (
         <WidgetImage
           name={name}
-          text={text}
-          size={size}
           width={width}
-          WidgetType={widgetType}
           url={url}
           uid={uid} 
           pid={pid} 
@@ -109,10 +107,7 @@ render() {
       return (
       <WidgetYouTube
         name={name}
-        text={text}
-        size={size}
         width={width}
-        widgetType={widgetType}
         url={url}
         uid={uid} 
         pid={pid} 
@@ -123,4 +118,5 @@ render() {
 
       )}
 }
-  }
+
+}

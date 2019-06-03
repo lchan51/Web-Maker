@@ -40,7 +40,7 @@ export default class WidgetYouTube extends Component {
         
                         <div className="form-group">
                         <label htmlFor="URL">URL</label>
-                        <input id="url" name="url" type="text" onChange={this.onChange} Value={url} className="form-control"/>
+                        <input id="url" name="url" type="text" onChange={this.onChange} value={url} className="form-control"/>
                         </div>        
                                             
                         <div className="form-group">

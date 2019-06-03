@@ -32,7 +32,7 @@ nav.navbar-light i {
 
 .fa-cog{
   color: #007bff;
-  margin-right: 10px
+  margin-right: 5px
 }
 
 .fa-user{
@@ -40,7 +40,6 @@ nav.navbar-light i {
   position: float-right;
   margin-right: 20px
 }
-
 
 navbar 
 nav.navbar-dark a {
@@ -50,8 +49,6 @@ nav.navbar-dark a {
 label {
   font-weight: 700;
 }
-
-
 
 .full-width {
   width: 100%;
@@ -66,4 +63,8 @@ span {
   margin-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.fa-bars {
+  margin-left: 10px
 }

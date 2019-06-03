@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import WidgetHeading from "./WidgetHeading";
 import WidgetImage from "./WidgetImage";
 import WidgetYouTube from "./WidgetYouTube" 
+import Axios from "axios"
 
 
 export default class WidgetEdit extends Component {
@@ -27,14 +27,9 @@ componentDidMount(){
     pid: this.props.match.params.pid
   })
 }
-  getWidget = (wgid) => {
-    let currentWidget;
-    for(let widget of this.props.widgets){
-      if(widget._id === wgid){
-        currentWidget=widget;
-        break;
-      }
-    }
+  getWidget = async (wgid) => {
+    const res = await Axios.get(`/api/widget/${wgid}`)
+    const currentWidget = res.data
     this.setState({
     name: currentWidget.name? currentWidget.name :"",
     text: currentWidget.text,
@@ -54,7 +49,7 @@ componentDidMount(){
     e.preventDefault();
     const {name, size, text, url, width, widgetType, uid, wid, pid} = this.state;
     const newWidget = {
-      _id: this.props.match.params.wgid,
+      pageId: pid,
       name,
       size: parseInt(size),
       text, 
@@ -62,13 +57,19 @@ componentDidMount(){
       width, 
       widgetType
     }
-    this.props.editWidget(newWidget);
-    this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
+    console.log(newWidget);
+    if(widgetType==="YOUTUBE"){
+      const splited = newWidget.url.split("/");
+      const length = splited.length;
+      const videoId = splited[length -1];
+      newWidget.url = "https://www.youtube.com/embed/" = videoId;
+    }
+    Axios.put("/api/widget", newWidget);
+    this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`);
   }
-
   onDelete = () => {
     const {uid, wid, pid} = this.state;
-    this.props.deleteWidget(this.props.match.params.wgid);
+    Axios.delete (`/api/widget/${this.props.match.params.wgid}`);
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
   }
 
@@ -82,9 +83,6 @@ render() {
           name={name}
           text={text}
           size={size}
-          width={width}
-          widgetType={widgetType}
-          url={url}
           uid={uid} 
           pid={pid} 
           wid={wid}
@@ -97,9 +95,6 @@ render() {
         <WidgetImage
           name={name}
           text={text}
-          size={size}
-          width={width}
-          WidgetType={widgetType}
           url={url}
           uid={uid} 
           pid={pid} 
@@ -110,12 +105,9 @@ render() {
 
       } else {
       return (
-      <widgetYouTube
+      <WidgetYouTube
         name={name}
-        text={text}
-        size={size}
         width={width}
-        widgetType={widgetType}
         url={url}
         uid={uid} 
         pid={pid} 
