@@ -53,7 +53,7 @@ render() {
                     <div className="float-right">
                     <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget/${widget._id}`}>
                     <i className="fas fa-cog" /></Link>
-                    <span> <i className="fas fa-bars" /></span>
+                    <span><i className="fas fa-bars" /></span>
                     </div>
     
                     <div>                           
