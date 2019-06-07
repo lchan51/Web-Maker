@@ -60,7 +60,7 @@ export default class PageEdit extends Component {
                     <Link className="color-black" to={`/user/${uid}/website/${wid}/page`}>
                         <i className="fas fa-chevron-left" />
                     </Link>
-                    <span className="navbar-brand">
+                    <span className="navbar-brand mb-0 h1">
                         Edit Page
                     </span>
                     <button className="color-black btn" form="editPageForm">

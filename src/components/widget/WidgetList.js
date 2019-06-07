@@ -36,7 +36,7 @@ render() {
             <nav className="navbar navbar-light fixed-top bg-light full width">
             <Link className="color-black" to={`/user/${uid}/website/${wid}/page`}>
             <i className="fas fa-chevron-left" /></Link>
-            <span className="navbar-brand">Widgets</span>
+            <span className="navbar-brand mb-0 h1">Widgets</span>
             <Link className="color-black" to={`/user/${uid}/website/${wid}/page/${pid}/widget/new`}>
             <i className="fas fa-plus" /></Link>
           </nav>

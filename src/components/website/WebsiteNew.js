@@ -59,7 +59,7 @@ export default class WebsiteNew extends Component {
             <Link to={`/user/${this.props.match.params.uid}/website`}>
               <i className="fas fa-chevron-left" />
             </Link>
-            <span> Websites</span>
+            <span className= "navbar-brand mb-0 h1"> Websites</span>
             <Link className="float-right" to={`/user/${uid}/website`}>
               <i className="fas fa-plus pt-2" />
             </Link>
@@ -72,7 +72,7 @@ export default class WebsiteNew extends Component {
             <button form="newWebForm" className="btn float-right">
               <i className="fas fa-check pt-1"/>
             </button>
-            <span>New Website</span>
+            <span className="navbar-brand mb-0 h1">New Website</span>
           </div>
         </nav>
         

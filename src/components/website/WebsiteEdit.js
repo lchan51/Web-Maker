@@ -74,14 +74,14 @@ export default class WebsiteEdit extends Component {
           <Link className="float-left" to= {`/user/${uid}/website`}>
             <i className="fas fa-chevron-left"></i>
           </Link>
-          <span className navbar-brand mb-0 h1>  Websites </span>
+          <span className= "navbar-brand mb-0 h1">  Websites </span>
           <Link className="float-right" to={`/user/${uid}/website`}>
             <i className= "fas fa-plus pt-2"></i>
           </Link>
         </div>
         <div className="col-lg-8 d-lg-block float-right mt-3">
           <Link to={`/user/${uid}/website`}><i className="fas fa-chevron-left"></i></Link>
-          <span className navbar-brand mb-0 h1>  Edit Website </span>
+          <span className= "navbar-brand mb-0 h1">  Edit Website </span>
           <button className="float-right btn" form="editWebForm">
             <i className="fas fa-check"></i>
           </button>

@@ -31,7 +31,7 @@ export default class WidgetChooser extends Component {
           <Link className="color-black" to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
             <i className="fas fa-chevron-left"/>
           </Link>
-          <span className="navbar-brand">Choose Widget</span>
+          <span className="navbar-brand mb-0 h1">Choose Widget</span>
           <div></div>
         </nav>
 
@@ -39,7 +39,7 @@ export default class WidgetChooser extends Component {
         <div className="container">
           <ul className="list-group">
             <li className="list-group-item">
-            <Link onClick={this.createWidget.bind(this, "HEADING")}>Heading</Link>
+            <span onClick={this.createWidget.bind(this, "HEADING")}>Heading</span>
             </li>
 
             <li className="list-group-item">
@@ -63,11 +63,11 @@ export default class WidgetChooser extends Component {
             </li>
 
             <li className="list-group-item">
-              <Link onClick={this.createWidget.bind(this, "IMAGE")}>Image</Link>
+              <span onClick={this.createWidget.bind(this, "IMAGE")}>Image</span>
             </li>
 
             <li className="list-group-item">
-              <Link onClick={this.createWidget.bind(this, "YOUTUBE")}>YouTube</Link>
+              <span onClick={this.createWidget.bind(this, "YOUTUBE")}>YouTube</span>
             </li>
 
             <li className="list-group-item">

@@ -30,9 +30,8 @@ export default class PageList extends Component {
     const {uid, wid} = this.state;
  
     return (
-      
       <div>
-          <nav className="navbar navbar-light bg-lignpm sht fixed-top">
+          <nav className="navbar navbar-light fixed-top bg-light full width">
           <Link to={`/user/${this.state.uid}/website`}>
           <i className="color-black fas fa-chevron-left" />
           </Link>

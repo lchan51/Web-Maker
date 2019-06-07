@@ -2,6 +2,7 @@ body {
   padding-top: 75px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 20px;
   padding-bottom: 20px
  
 }
@@ -53,11 +54,11 @@ label {
 .full-width {
   width: 100%;
 }
-
-span {
-  font-weight: 650;
-  font-size: large;
+.navbar-primary bg-primary fixed-bottom float-rightfixed-bottom{
+  padding-top: 20px;
+  margin-top: 20px
 }
+
 
 .list-group-item {
   margin-top: 20px;
