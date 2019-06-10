@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Login} />db.user.find.pretty
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/user/:uid" component={Profile} />

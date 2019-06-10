@@ -7,13 +7,18 @@ export default class Register extends Component {
   state = {
     username: "",
     password: "",
-    password2: ""
-
+    password2: "",
+    showUsernameAlert: false,
+    showPasswordAlert: false,
+    showUsernameLengthAlert: false,
+    showPasswordLengthAlert: false
   };
 
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      showUsernameAlert: false,
+      showPasswordAlert: false
     });
   };
   
@@ -23,14 +28,28 @@ export default class Register extends Component {
     this.register(username, password, password2);
   }
     async register (username, password, password2) {
+    if (username.length <5){
+      this.setState({
+        showUsernameLengthAlert: true
+      })
+      return;
+    }
+        if (password.length <4){
+        this.setState({
+          showPasswordLengthAlert: true
+        })
+    }
     if(password !== password2) {
-        alert("The passwords do not match");
+      this.setState({
+        showPasswordAlert: true
+      })
         return;
     }
     const res = await axios.get(`/api/user?username=${username}`);
     
     if(res.data){
-        alert("Username is taken, please try another");
+      if (username.name===username){
+      }
         return;
     } else {
         const newUser = {
@@ -43,17 +62,25 @@ export default class Register extends Component {
         const res2 = await axios.post("/api/user", newUser);
         this.props.history.push(`/user/${res2.data._id}`);
     }
-}
-
+  }
 
   render() {
-
     const { username, password, password2 } = this.state
 
     return (
       <div className="container">
         <h1>Register</h1>
 
+        {this.state.showPasswordAlert && (<div className="alert alert-danger">
+          The passwords you entered don't match, please try again</div>)}
+          {this.state.showUsernameAlert && (<div className="alert alert-danger">
+          The username you entered is taken, please try a different one</div>)}
+          {this.state.showUsernameLengthAlert && (<div className="alert alert-danger">
+          The username you entered is too short it must be 5 character ore more, please try again</div>)}
+          {this.state.showPasswordLengthAlert && (<div className="alert alert-danger">
+          The passwords you entered is too short it must be 4 characters or more, please try again</div>)}
+        
+        
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -94,11 +121,10 @@ export default class Register extends Component {
             />
           </div>
           <button className="btn btn-primary btn-block">Register </button>
-          <Link className="btn btn-danger btn-block" to="/login/"> Cancel </Link>
+          <Link className="btn btn-danger btn-block" to="/login/"> Cancel 
+          </Link>
         </form>
-
       </div>
     );
   }
 }
-

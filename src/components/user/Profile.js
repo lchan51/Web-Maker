@@ -9,7 +9,7 @@ state = {
     email: "",
     firstName: "",
     lastName: "",
-    oldUsername:""
+    oldUsername:"",
   };
 async componentDidMount() {
     const uid = this.props.match.params.uid;
@@ -73,10 +73,12 @@ onSubmit = async e => {
         </nav>
 
         <div className="container">
+          <div className="alert alert-success">Your update has been completed successfully</div>
         <form id="profileForm" onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
+            name="username"
               className="form-control"
               type="text"
               id="username"

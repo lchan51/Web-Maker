@@ -5,12 +5,14 @@ import axios from "axios"
 export default class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    showAlert: false
   };
 
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      showAlert: false
     });
   };
 
@@ -22,15 +24,16 @@ export default class Login extends Component {
       password
     };
     this.login(user);
-
-    
   }
+  
   login = async user => {
     const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)
     if (res.data) {
       this.props.history.push(`/user/${res.data._id}`);
     }else {
-      alert ("Your username and/or password doesn't match our records")
+     this.setState({
+       showAlert: true
+     })
     }
   }
     
@@ -39,6 +42,10 @@ export default class Login extends Component {
       <div>
         <div className="container">
           <h1>Login</h1>
+          {
+            this.state.showAlert?
+            (<div className="alert alert-danger">Your username or password doesn't match our records</div>):null
+          }
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
