@@ -27,15 +27,22 @@ export default class Login extends Component {
   }
   
   login = async user => {
-    const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)
-    if (res.data) {
+    try {
+      const res = await axios.post('api/login', user);
       this.props.history.push(`/user/${res.data._id}`);
-    }else {
-     this.setState({
-       showAlert: true
-     })
-    }
+    } catch {
+      this.setState({
+      showAlert: true
+    })
   }
+}
+    //const res = await axios.post(`/api/login`, user);
+    //if (res.data) {
+      //this.props.history.push(`/user/${res.data._id}`);
+    //}else {
+     //this.setState({
+       //showAlert: true
+    
     
   render() {
     return (
@@ -82,4 +89,3 @@ export default class Login extends Component {
     );
   }
 }
-

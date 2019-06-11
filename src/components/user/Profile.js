@@ -10,8 +10,16 @@ state = {
     firstName: "",
     lastName: "",
     oldUsername:"",
+    updateComplete: false,
+    usernameTaken: false
   };
 async componentDidMount() {
+    const isLoggedIn = await this.props.loggedIn();
+    if(!isLoggedIn){
+      this.props.history.push("/login");
+      return;
+    }
+
     const uid = this.props.match.params.uid;
     const res = await axios.get (`/api/user/${uid}`);
     if(res.data) {
@@ -35,7 +43,9 @@ showUser = user => {
 
 onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      updateComplete: false,
+      usernameTaken: false
     });
   };
 
@@ -44,7 +54,7 @@ onSubmit = async e => {
     const { username, password, email, firstName, lastName, oldUsername } = this.state;
     if (username !==oldUsername){ 
     const res = await axios.get(`/api/user?username=${username}`);
-    if (res.data) {alert("Username is taken, please try another one ");
+    if (res.data) {this.setState({usernameTaken:true});
     return
     }
   }
@@ -57,8 +67,15 @@ onSubmit = async e => {
       lastName
     };
     await axios.put("/api/user", newUser);
-    alert ("Your update has been completed")
+    this.setState({
+      updateComplete: true
+    })
 }
+
+      logout = async ()=> {
+        await axios.post("/api/logout");
+        this.props.history.push("/login");
+      }
 
   render() {
     const { username, email, firstName, lastName } = this.state;
@@ -73,7 +90,8 @@ onSubmit = async e => {
         </nav>
 
         <div className="container">
-          <div className="alert alert-success">Your update has been completed successfully</div>
+        {this.state.updateComplete && (<div className="alert alert-success">Your update was completed successfully</div>)}
+        {this.state.usernameTaken && (<div className="alert alert-danger">Username is taken, please try another</div>)}
         <form id="profileForm" onSubmit={this.onSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -129,10 +147,10 @@ onSubmit = async e => {
         Websites
         </Link>
 
-        <Link className="btn btn-danger btn-block" 
-        to="/login/">
+        <button type="button" onClick={this.logout} className="btn btn-danger btn-block" 
+        >
         Logout 
-        </Link>
+        </button>
         </div>
 
         

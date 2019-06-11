@@ -4,13 +4,19 @@
   "private": true,
   "dependencies": {
     "D": "^1.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
+    "cookie": "^0.4.0",
+    "express": "^4.17.1",
     "mongoose": "^5.5.11",
     "nodemon": "^1.19.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.0"
+    "react-scripts": "3.0.0",
+    "server": "^1.0.18",
+    "session": "^0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

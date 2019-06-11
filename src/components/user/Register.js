@@ -38,19 +38,21 @@ export default class Register extends Component {
         this.setState({
           showPasswordLengthAlert: true
         })
+        return;
     }
     if(password !== password2) {
       this.setState({
         showPasswordAlert: true
       })
-        return;
+        return
     }
     const res = await axios.get(`/api/user?username=${username}`);
     
-    if(res.data){
-      if (username.name===username){
-      }
+    if (res.data) {this.setState({showUsernameAlert:true});
+      //if (username.name===username){
+      //}  
         return;
+
     } else {
         const newUser = {
             username,
@@ -59,7 +61,7 @@ export default class Register extends Component {
             firstName: "",
             lastName: ""
         };
-        const res2 = await axios.post("/api/user", newUser);
+        const res2 = await axios.post("/api/register", newUser);
         this.props.history.push(`/user/${res2.data._id}`);
     }
   }
@@ -76,9 +78,9 @@ export default class Register extends Component {
           {this.state.showUsernameAlert && (<div className="alert alert-danger">
           The username you entered is taken, please try a different one</div>)}
           {this.state.showUsernameLengthAlert && (<div className="alert alert-danger">
-          The username you entered is too short it must be 5 character ore more, please try again</div>)}
+          The username must be 5 characters or more, please try again</div>)}
           {this.state.showPasswordLengthAlert && (<div className="alert alert-danger">
-          The passwords you entered is too short it must be 4 characters or more, please try again</div>)}
+          The password must be 4 characters or more, please try again</div>)}
         
         
         <form onSubmit={this.onSubmit}>
