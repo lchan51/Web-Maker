@@ -22,5 +22,9 @@ UserModel.findUserById = (uid)=> {
 UserModel.updateUser = (user)=> {
     return UserModel.updateOne({_id:user._id}, user);
 }
+
+//UserModel.findAllUsers() =>{
+    //return UserModel.find
+//}
 module.exports = UserModel;
 

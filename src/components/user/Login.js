@@ -28,24 +28,26 @@ export default class Login extends Component {
   
   login = async user => {
     try {
-      const res = await axios.post('api/login', user);
+      const res = await axios.post('/api/login', user);
       this.props.history.push(`/user/${res.data._id}`);
-    } catch {
+  } catch {
       this.setState({
-      showAlert: true
-    })
+          showAlert: true
+      })
   }
-}
-    //const res = await axios.post(`/api/login`, user);
+    //const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)
     //if (res.data) {
       //this.props.history.push(`/user/${res.data._id}`);
-    //}else {
-     //this.setState({
-       //showAlert: true
-    
+    //} else {
+      //this.setState({
+      //showAlert: true
+    //})
+  //}
+} 
     
   render() {
     return (
+      
       <div>
         <div className="container">
           <h1>Login</h1>

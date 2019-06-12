@@ -11,12 +11,13 @@ state = {
     lastName: "",
     oldUsername:"",
     updateComplete: false,
-    usernameTaken: false
+    usernameTaken: false,
+    role: ""
   };
-async componentDidMount() {
+  async componentDidMount() {
     const isLoggedIn = await this.props.loggedIn();
-    if(!isLoggedIn){
-      this.props.history.push("/login");
+    if (isLoggedIn === 0) {
+      this.props.history.push('/login');
       return;
     }
 
@@ -30,14 +31,15 @@ async componentDidMount() {
   }
 
 showUser = user => {
-    const { username, password, email, firstName, lastName} = user;
+    const { username, password, email, firstName, lastName, role} = user;
     this.setState({
       username,
       password,
       email,
       firstName,
       lastName,
-      oldUsername: username
+      oldUsername: username,
+      role
     });
   };
 
@@ -78,7 +80,7 @@ onSubmit = async e => {
       }
 
   render() {
-    const { username, email, firstName, lastName } = this.state;
+    const { username, email, firstName, lastName, role } = this.state;
 
     return (
         <div>
@@ -146,14 +148,16 @@ onSubmit = async e => {
         to={`/user/${this.props.match.params.uid}/website`}>
         Websites
         </Link>
-
-        <button type="button" onClick={this.logout} className="btn btn-danger btn-block" 
-        >
+        {
+          role === "admin"?( <Link to="/manage" className="btn btn-warning btn-block">Manage Users</Link>): null
+        }
+       
+        <button type="button" onClick={this.logout} className="btn btn-danger btn-block">
         Logout 
         </button>
-        </div>
-
         
+        </div>
+    
           </div>
     )
   }
