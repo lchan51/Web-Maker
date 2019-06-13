@@ -4,7 +4,8 @@ module.exports = function (app)
   const UserModel = require("../models/user/user.model");
   const bcrypt = require('bcryptjs');
 
-  var salt = bcrypt.genSaltSync(10);
+  //const salt = bcrypt.genSaltSync(10);
+  //user.password = bcrypt.hashSync(user.password, salt)
 
 
     passport.serializeUser(serializeUser);
@@ -25,18 +26,36 @@ module.exports = function (app)
  }
     passport.use(new LocalStrategy(localStrategy));
     
-    async function localStrategy(username, password, done){
-      const data = await UserModel.findUserByUsername(username);
-      if (data && bcrypt.compareSync(password, data.password)){
-        return done (null, data);
-      } else if (data && password === data.password) {
-        data.password = bcrypt.hashSync(data.password, salt);
-        await UserModel.updateUser(data);
-        return done(null, data);
-      }else{
-        return done(null, false)
-      }
-      }
+    //async function localStrategy(username, password, done){
+      //passport.use(new LocalStrategy(localStrategy));
+
+    async function localStrategy(username, password, done) {
+   const data = await UserModel.findUserByUsername(username);
+   if (data && bcrypt.compareSync(password, data.password)) {
+     return done(null, data);
+   } else if (data && password === data.password) {
+    data.password = bcrypt.hashSync(data.password, salt);
+    await userModel.updateUser(data);
+     return done(null, data);
+   } else {
+     return done (null, false);
+   }
+ }
+
+
+
+
+      //const data = await UserModel.findUserByUsername(username);
+      //if (data && bcrypt.compareSync(password, data.password)){
+        //return done (null, data);
+      //} else if (data && password === data.password) {
+        //data.password = bcrypt.hashSync(data.password, salt);
+        //await UserModel.updateUser(data);
+        //return done(null, data);
+      //}else{
+        //return done(null, false)
+      //}
+      //}
 
     app.post('/api/login', passport.authenticate('local'), (req, res) => {
       const user = req.user;

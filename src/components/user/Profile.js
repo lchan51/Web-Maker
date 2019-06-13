@@ -16,7 +16,7 @@ state = {
   };
   async componentDidMount() {
     const isLoggedIn = await this.props.loggedIn();
-    if (isLoggedIn === 0) {
+    if (!isLoggedIn) {
       this.props.history.push('/login');
       return;
     }
