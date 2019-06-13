@@ -23,8 +23,9 @@ UserModel.updateUser = (user)=> {
     return UserModel.updateOne({_id:user._id}, user);
 }
 
-//UserModel.findAllUsers() =>{
-    //return UserModel.find
-//}
+UserModel.findAllUsers = () =>{
+    return UserModel.find();
+}
+
 module.exports = UserModel;
 

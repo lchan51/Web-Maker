@@ -4,8 +4,7 @@ module.exports = function (app)
   const UserModel = require("../models/user/user.model");
   const bcrypt = require('bcryptjs');
 
-  //const salt = bcrypt.genSaltSync(10);
-  //user.password = bcrypt.hashSync(user.password, salt)
+  const salt = bcrypt.genSaltSync(10);
 
 
     passport.serializeUser(serializeUser);
@@ -26,36 +25,19 @@ module.exports = function (app)
  }
     passport.use(new LocalStrategy(localStrategy));
     
-    //async function localStrategy(username, password, done){
-      //passport.use(new LocalStrategy(localStrategy));
 
     async function localStrategy(username, password, done) {
-   const data = await UserModel.findUserByUsername(username);
-   if (data && bcrypt.compareSync(password, data.password)) {
-     return done(null, data);
-   } else if (data && password === data.password) {
+    const data = await UserModel.findUserByUsername(username);
+    if (data && bcrypt.compareSync(password, data.password)) {
+    return done(null, data);
+      } else if (data && password === data.password) {
     data.password = bcrypt.hashSync(data.password, salt);
     await userModel.updateUser(data);
-     return done(null, data);
-   } else {
-     return done (null, false);
+    return done(null, data);
+      } else {
+    return done (null, false);
    }
  }
-
-
-
-
-      //const data = await UserModel.findUserByUsername(username);
-      //if (data && bcrypt.compareSync(password, data.password)){
-        //return done (null, data);
-      //} else if (data && password === data.password) {
-        //data.password = bcrypt.hashSync(data.password, salt);
-        //await UserModel.updateUser(data);
-        //return done(null, data);
-      //}else{
-        //return done(null, false)
-      //}
-      //}
 
     app.post('/api/login', passport.authenticate('local'), (req, res) => {
       const user = req.user;
@@ -73,9 +55,8 @@ module.exports = function (app)
 
       app.post("/api/register", async (req, res)=> {
         const user = req.body;
+        user.password = bcrypt.hashSync(user.password, salt);
         const data = await UserModel.createUser(user);
-        //user.password = bcrypt.hashSync(user.password, salt);
-        //const data = await UserModel.createUser(user);
         req.login(data, ()=> {
           res.json(data);
         })
@@ -109,13 +90,15 @@ module.exports = function (app)
           });
           app.put("/api/user", async (req, res) => {
             const newUser = req.body;
-            const date = await UserModel.updateUser(newUser);
+            const data = await UserModel.updateUser(newUser);
             res.json(newUser);
               });
 
-              app.get("/api/user", async (req, res) => {
-                const data=await UserModel.findAllUsers();
-                res.json(data);
+            app.get("/api/users", async (req, res) => {
+            const data=await UserModel.findAllUsers();
+            res.json(data);
               })
+
+
 
             }

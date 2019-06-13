@@ -16,7 +16,7 @@ state = {
   };
   async componentDidMount() {
     const isLoggedIn = await this.props.loggedIn();
-    if (!isLoggedIn) {
+    if (isLoggedIn ===0) {
       this.props.history.push('/login');
       return;
     }
@@ -149,7 +149,7 @@ onSubmit = async e => {
         Websites
         </Link>
         {
-          role === "admin"?( <Link to="/manage" className="btn btn-warning btn-block">Manage Users</Link>): null
+          role === "admin"?(<Link to="/manage" className="btn btn-warning btn-block">Manage Users</Link>): null
         }
        
         <button type="button" onClick={this.logout} className="btn btn-danger btn-block">
