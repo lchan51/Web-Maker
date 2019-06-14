@@ -29,7 +29,7 @@ export default class UserManage extends Component {
         })
     }
         delete = async (id)=> {
-           await Axios.dete (`/api/user/${id}`);
+           await Axios.delete (`/api/user/${id}`);
             const newUsers = this.state.users.filter(
                 (user) =>user._id !==id
             )
@@ -49,7 +49,8 @@ export default class UserManage extends Component {
     <div>
     <nav className="navbar navbar-dark bg-primary fixed-top">
     <Link to={`/user/${user._id}`}> <i className="fas fa-chevron-left"></i></Link>
-    <span className="navbar-brand mb-0 h1">User Management</span><span></span>
+    <span className="navbar-brand mb-0 h1">User Management</span>
+    <button onClick={this.logout} className = "float right fas fa-sign-out-alt"></button>
     </nav>
 
     <div className="container">
@@ -62,25 +63,17 @@ export default class UserManage extends Component {
                         </button></li>)
         )}
 
-
-
-   
-    
-                
-              
-  
             
      </ul>               
     </div>     
        
-    <button type="button" onClick={this.logout} className="btn btn-danger btn-block">
-        Logout 
-        </button>
-    <nav className="navbar navbar-dark bg-primary fixed-bottom">
-    <Link className="float-right" to={`/user/${user._id}`}>
-      <i className="fas fa-user float-right" />
-      </Link>
-  </nav>
+    
+    <nav className="navbar navbar-dark bg-primary fixed-bottom"> 
+                <div className="full-width">
+                <Link className="color-white float-right" to={`/user/${user._id}`}>
+                <i className="fas fa-user"/></Link>
+                </div>
+                </nav>
   </div> 
     );
             }

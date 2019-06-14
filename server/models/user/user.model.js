@@ -27,5 +27,13 @@ UserModel.findAllUsers = () =>{
     return UserModel.find();
 }
 
+UserModel.deleteUser = (id) => {
+    return UserModel.deleteOne({_id: id})
+
+
+}
+
+
+
 module.exports = UserModel;
 

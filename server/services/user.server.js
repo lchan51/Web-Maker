@@ -27,12 +27,12 @@ module.exports = function (app)
     
 
     async function localStrategy(username, password, done) {
-    const data = await UserModel.findUserByUsername(username);
+    const data = await UserModel.findUserByUsername (username);
     if (data && bcrypt.compareSync(password, data.password)) {
     return done(null, data);
       } else if (data && password === data.password) {
     data.password = bcrypt.hashSync(data.password, salt);
-    await userModel.updateUser(data);
+    await UserModel.updateUser(data);
     return done(null, data);
       } else {
     return done (null, false);
@@ -99,6 +99,10 @@ module.exports = function (app)
             res.json(data);
               })
 
-
+              app.delete("/api/user/:id", async (req, res) =>{
+                const id = req.params ["id"];
+                const data = await UserModel.deleteUser(id)
+                res.json (data)
+              })
 
             }
